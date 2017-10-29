@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+  <changeSet id="31" author="hr4">
+    <delete tableName="tagdetail"><where>tagType = 1</where></delete>
+
+    <sql splitStatements="true" stripComments="true">
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Energy &amp;amp; Utilities');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Lending');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Print &amp;amp; Design');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Insurance Brokers');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Investment Banking');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Local Government');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Software Vendors');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Stock Exchange');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Oil &amp;amp; Gas');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Toys &amp;amp; Games');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Beverages');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Radio Broadcasting');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Teleconferencing');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Life Insurance');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Service Providers');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Agriculture');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Music');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Personal Care');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Securities');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Home &amp;amp; Car Insurance');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Hardware Manufacturers');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Office Equipment &amp;amp; Stationery');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Property');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Reinsurance');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Media');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Travel &amp; Transport');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Data Services');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Photographic &amp; Optical');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Chemicals');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Insurance');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Retail');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Credit Insurance');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Brokers &amp; Traders');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Telecommunications');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Automotive &amp; Transport');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Electronics');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Fixed Line Voice Services');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Gambling');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Phamaceuticals');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Pet Products');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Central Government');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Banking');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Water');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Television');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Training Companies');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Sports &amp; Recreation');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Jewelry');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'FX &amp; Mony Markets');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Messaging Services');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Construction');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Accomodation');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Risk Management');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Colleges &amp; Universities');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Entertainment');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Wireless Communications');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'FMCG');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Recruitment &amp; Search');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Financial Services');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Consumer Electronics');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Food');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Asset Management');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Houseware');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Charitable Organisations');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Consulting Services');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Film &amp; Video');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Manufacturing');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Advertising &amp; Marketing');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Business Services');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Eletricity');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Publishing');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Appliances');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Restaurants &amp; Cafes');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Government');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Health Care');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'New Category');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Sporting Goods');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Legal Services');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Apparel');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Leisure');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Information Technology');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Education');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Cable &amp; Satellite');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Accounting Services');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Aerospace &amp; Defense');
+        INSERT INTO tagdetail(tagtype, name) VALUES (1, 'Resellers &amp; Distributors');
+    </sql>
+  </changeSet>
+</databaseChangeLog>

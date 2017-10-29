@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+  <changeSet id="13" author="hr4">
+  	<dropColumn columnName="candidateName"
+            tableName="assignmentcandidate"/>
+    <addColumn tableName="assignmentcandidate">
+        <column name="progressStatusId" type="varchar(45)"/>
+    </addColumn>
+    <addColumn tableName="assignmentcandidate">
+        <column name="progressNote" type="varchar(255)"/>
+    </addColumn>
+          
+    <createTable tableName="candidateprogressstatus">
+      <column name="id" type="int" autoIncrement = "true"><constraints primaryKey="true" nullable="false"/></column> 
+      <column name="progressStatus" type="varchar(50)"/>
+    </createTable>
+     <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="1"/>
+        <column name="progressStatus" valueComputed="'Target Candidate'"/>
+    </insert>
+   <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="2"/>
+        <column name="progressStatus" valueComputed="'Application Received'"/>
+    </insert>  
+   <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="3"/>
+        <column name="progressStatus" valueComputed="'Left Message'"/>
+    </insert>      
+    <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="4"/>
+        <column name="progressStatus" valueComputed="'Sent Email'"/>
+    </insert>    
+    <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="5"/>
+        <column name="progressStatus" valueComputed="'In Discussion'"/>
+    </insert>  
+    <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="6"/>
+        <column name="progressStatus" valueComputed="'Consultant Interview'"/>
+    </insert>
+    <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="7"/>
+        <column name="progressStatus" valueComputed="'Shortlisted'"/>
+    </insert>
+    <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="8"/>
+        <column name="progressStatus" valueComputed="'Submitted to Client'"/>
+    </insert>
+    <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="9"/>
+        <column name="progressStatus" valueComputed="'Client Interview'"/>
+    </insert>
+    <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="10"/>
+        <column name="progressStatus" valueComputed="'Offer'"/>
+    </insert>
+    <insert tableName="candidateprogressstatus">
+        <column name="id" valueComputed="11"/>
+        <column name="progressStatus" valueComputed="'Placed'"/>
+    </insert>
+  </changeSet>
+</databaseChangeLog>

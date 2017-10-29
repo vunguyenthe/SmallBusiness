@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Small Business Webapp
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: vunguyen
+Implementation-Vendor-Id: com.small.business
+Build-Jdk: 1.8.0_144
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+Main-Class: com.small.business.Application
+

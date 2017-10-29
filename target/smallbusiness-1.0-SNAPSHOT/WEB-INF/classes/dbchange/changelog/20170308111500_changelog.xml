@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+  <changeSet id="34" author="hr4">
+    <delete tableName="tagdetail"><where>tagType = 8</where></delete>
+
+    <sql splitStatements="true" stripComments="true">
+        INSERT INTO tagdetail(tagtype, name) VALUES (8, 'Management');
+        INSERT INTO tagdetail(tagtype, name) VALUES (8, 'Supporting');
+        INSERT INTO tagdetail(tagtype, name) VALUES (8, 'Contributor');
+        INSERT INTO tagdetail(tagtype, name) VALUES (8, 'VP/Director');
+        INSERT INTO tagdetail(tagtype, name) VALUES (8, 'C Level/Executive');
+        INSERT INTO tagdetail(tagtype, name) VALUES (8, 'Senior Management');
+    </sql>
+  </changeSet>
+</databaseChangeLog>

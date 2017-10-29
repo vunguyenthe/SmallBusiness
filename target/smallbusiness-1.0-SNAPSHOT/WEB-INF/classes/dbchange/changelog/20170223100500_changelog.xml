@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+  <changeSet id="29" author="hr4">
+   <preConditions onFail="MARK_RAN">
+        <not>
+            <tableExists tableName="audit"/>
+        </not>
+    </preConditions>
+    <createTable tableName="audit">
+      <column name="id" type="BIGINT" autoIncrement = "true"><constraints primaryKey="true" nullable="false"/></column> 
+      <column name="dataRequest" type="TEXT"/>
+      <column name="dataResponse" type="TEXT"/>
+      <column name="type" type="varchar(50)"/>
+      <column name="status" type="varchar(20)"/>
+      <column name="user" type="varchar(50)"/>
+      <column name="time" type="TIMESTAMP"/>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

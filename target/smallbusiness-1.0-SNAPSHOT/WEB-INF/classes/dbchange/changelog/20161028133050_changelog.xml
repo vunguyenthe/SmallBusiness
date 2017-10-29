@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+  <changeSet id="5" author="hr4">
+    <createTable tableName="journaltype">
+      <column name="id" type="int"><constraints primaryKey="true" nullable="false"/></column> 
+      <column name="journalType" type="varchar(50)"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="6" author="hr4">
+    <insert tableName="journalType">
+        <column name="id" valueComputed="0"/>
+        <column name="journalType" valueComputed="'Note'"/>
+    </insert>
+    <insert tableName="journalType">
+        <column name="id" valueComputed="1"/>
+        <column name="journalType" valueComputed="'Email'"/>
+    </insert>
+    <insert tableName="journalType">
+        <column name="id" valueComputed="2"/>
+        <column name="journalType" valueComputed="'Appointment'"/>
+    </insert>
+    <insert tableName="journalType">
+        <column name="id" valueComputed="3"/>
+        <column name="journalType" valueComputed="'Task'"/>
+    </insert>
+    <insert tableName="journalType">
+        <column name="id" valueComputed="4"/>
+        <column name="journalType" valueComputed="'Interview'"/>
+    </insert>
+    <insert tableName="journalType">
+        <column name="id" valueComputed="5"/>
+        <column name="journalType" valueComputed="'Meeting'"/>
+    </insert>
+</changeSet>
+<changeSet id="7" author="hr4">
+  <renameColumn tableName="assignmentjournal"
+    		columnDataType="int"
+          newColumnName="journalType"
+          oldColumnName="journaType"/>
+</changeSet>
+<changeSet id="8" author="hr4">
+  <renameColumn tableName="companyjournal"
+    		columnDataType="int"
+          newColumnName="journalType"
+          oldColumnName="journaType"/>
+</changeSet>
+<changeSet id="9" author="hr4">
+ <renameColumn tableName="peopleeducation"
+   		columnDataType="int"
+         newColumnName="journalType"
+         oldColumnName="journaType"/>
+</changeSet>
+<changeSet id="10" author="hr4">
+ <renameColumn tableName="peoplejournal"
+   		columnDataType="int"
+         newColumnName="journalType"
+         oldColumnName="journaType"/>
+</changeSet>
+</databaseChangeLog>

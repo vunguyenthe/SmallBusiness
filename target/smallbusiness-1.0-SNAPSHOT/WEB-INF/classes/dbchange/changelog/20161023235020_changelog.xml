@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+  <changeSet author="hr4" id="4">
+    <insert tableName="tagdetail">
+        <column name="id" valueComputed="101"/>
+        <column name="tagType" valueComputed="6"/>
+        <column name="name" valueComputed="'Advertisement'"/>
+    </insert>
+    <insert tableName="tagdetail">
+        <column name="id" valueComputed="102"/>
+        <column name="tagType" valueComputed="6"/>
+        <column name="name" valueComputed="'Affiliate'"/>
+    </insert>
+    <insert tableName="tagdetail">
+        <column name="id" valueComputed="103"/>
+        <column name="tagType" valueComputed="6"/>
+        <column name="name" valueComputed="'Conference'"/>
+    </insert>
+    <insert tableName="tagdetail">
+        <column name="id" valueComputed="104"/>
+        <column name="tagType" valueComputed="6"/>
+        <column name="name" valueComputed="'Directory'"/>
+    </insert>
+    <insert tableName="tagdetail">
+        <column name="id" valueComputed="105"/>
+        <column name="tagType" valueComputed="6"/>
+        <column name="name" valueComputed="'Event'"/>
+    </insert>
+    <insert tableName="tagdetail">
+        <column name="id" valueComputed="106"/>
+        <column name="tagType" valueComputed="6"/>
+        <column name="name" valueComputed="'Known Company'"/>
+    </insert>
+    <insert tableName="tagdetail">
+        <column name="id" valueComputed="107"/>
+        <column name="tagType" valueComputed="6"/>
+        <column name="name" valueComputed="'Marketing Campaign'"/>
+    </insert>
+    <insert tableName="tagdetail">
+        <column name="id" valueComputed="108"/>
+        <column name="tagType" valueComputed="6"/>
+        <column name="name" valueComputed="'Referral'"/>
+    </insert>
+    <insert tableName="tagdetail">
+        <column name="id" valueComputed="109"/>
+        <column name="tagType" valueComputed="6"/>
+        <column name="name" valueComputed="'Seminar'"/>
+    </insert>
+    <insert tableName="tagdetail">
+        <column name="id" valueComputed="110"/>
+        <column name="tagType" valueComputed="6"/>
+        <column name="name" valueComputed="'Website'"/>
+    </insert>
+  </changeSet>
+</databaseChangeLog>

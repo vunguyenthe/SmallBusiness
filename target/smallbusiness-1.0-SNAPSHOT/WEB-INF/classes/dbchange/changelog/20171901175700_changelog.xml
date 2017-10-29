@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+  <changeSet id="25" author="hr4">
+	<insert tableName="candidateprogressstatus">
+	        <column name="id" valueComputed="12"/>
+	        <column name="progressStatus" valueComputed="'Rejected by researcher'"/>
+	 </insert>
+	 <insert tableName="candidateprogressstatus">
+	        <column name="id" valueComputed="13"/>
+	        <column name="progressStatus" valueComputed="'Rejected by consultant'"/>
+	    </insert>  
+	 <insert tableName="candidateprogressstatus">
+	        <column name="id" valueComputed="14"/>
+	        <column name="progressStatus" valueComputed="'Rejected by client'"/>
+	 </insert>      
+	 <insert tableName="candidateprogressstatus">
+	        <column name="id" valueComputed="15"/>
+	        <column name="progressStatus" valueComputed="'Not interested'"/>
+	 </insert>	     
+  </changeSet>
+</databaseChangeLog>  
