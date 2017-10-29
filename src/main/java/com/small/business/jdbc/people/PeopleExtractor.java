@@ -11,10 +11,7 @@ import com.small.business.model.people.People;
 public class PeopleExtractor implements ResultSetExtractor {
 
     public People extractData(ResultSet resultSet) throws SQLException, DataAccessException {
-
         People people = new People();
-
-        int id = 1;
         people.setId(resultSet.getLong("id"));
         people.setFullName(resultSet.getString("fullName"));
         people.setEmail(resultSet.getString("email"));

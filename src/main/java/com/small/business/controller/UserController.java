@@ -5,8 +5,6 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,29 +18,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.small.business.annotations.Monitor;
-import com.small.business.model.user.Consultant;
 import com.small.business.model.user.ForgotPasswordRequest;
 import com.small.business.model.user.ResetPasswordRequest;
-import com.small.business.model.user.Role;
 import com.small.business.model.user.User;
-import com.small.business.service.user.ConsultantService;
-import com.small.business.service.user.RoleService;
 import com.small.business.service.user.UserService;
 
 @Controller
 @RequestMapping("/api")
 public class UserController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private RoleService roleService;
-
-    @Autowired
-    private ConsultantService consultantService;
 
     @Autowired
     @Qualifier("cachedTokenService")
