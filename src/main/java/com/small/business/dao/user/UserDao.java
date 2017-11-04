@@ -4,13 +4,18 @@ import java.util.List;
 import java.util.Optional;
 
 import com.small.business.model.user.User;
+import com.small.business.model.user.UserPosition;
 
 public interface UserDao {
 
     public List<User> getAllUser();
 
+    public List<UserPosition> getAllUserPosition();
+    
     public User getUserById(Long id);
 
+    public UserPosition getUserPosition(Long userId);
+    	
     public Optional<User> getUserByEmail(String email);
 
     public boolean addUser(User People);

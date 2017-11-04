@@ -25,6 +25,7 @@ import com.small.business.exception.NotFoundException;
 import com.small.business.model.user.ForgotPasswordRequest;
 import com.small.business.model.user.ResetPasswordRequest;
 import com.small.business.model.user.User;
+import com.small.business.model.user.UserPosition;
 import com.small.business.service.mail.EmailContentType;
 import com.small.business.service.mail.EmailService;
 
@@ -55,12 +56,18 @@ public class UserServiceImpl implements UserService {
         List<User> userList = userDao.getAllUser();
         return userList;
     }
-
+    public List<UserPosition> getAllUserPosition() {
+        List<UserPosition> userPositionList = userDao.getAllUserPosition();
+        return userPositionList;	
+    }
     public User getUserById(Long id) {
 
         return userDao.getUserById(id);
     }
-
+    public UserPosition getUserPosition(Long userId) {
+    	
+    	return userDao.getUserPosition(userId);
+    }
     public boolean addUser(User user) {
 
         return userDao.addUser(user);
@@ -70,7 +77,6 @@ public class UserServiceImpl implements UserService {
 
         boolean ret;
         ret = userDao.deleteUserById(id);
-        id--;
         return ret;
     }
 

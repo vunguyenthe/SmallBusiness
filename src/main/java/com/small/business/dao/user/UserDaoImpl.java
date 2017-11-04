@@ -16,8 +16,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
+import com.small.business.jdbc.user.UserPositionRowMapper;
 import com.small.business.jdbc.user.UserRowMapper;
 import com.small.business.model.user.User;
+import com.small.business.model.user.UserPosition;
 
 @Service("userDao")
 public class UserDaoImpl implements UserDao {
@@ -35,7 +37,31 @@ public class UserDaoImpl implements UserDao {
         userList = jdbcTemplate.query(sql, new UserRowMapper());
         return userList;
     }
-
+    
+	public List<UserPosition> getAllUserPosition() {
+        List userPositionList = new ArrayList<UserPosition>();
+        String sql = "select u.id as userId, u.name, u.email, u.phoneNumber, u.address, p.longtitude, p.latitude "
+        		+ "from user u, position p ";
+        	sql += "where u.id = p.userId";
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        userPositionList = jdbcTemplate.query(sql, new UserPositionRowMapper());
+        return userPositionList;
+    }
+    
+	public UserPosition getUserPosition(Long userId) {
+		UserPosition userPosition= new UserPosition();
+        List<UserPosition> userPositionList = new ArrayList<UserPosition>();
+        String sql = "select u.id as userId, u.name, u.email, u.phoneNumber, u.address, p.longtitude, p.latitude "
+        		+ "from user u, position p ";
+        	sql += "where u.id = p.userId and p.userId = " + userId;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        userPositionList = jdbcTemplate.query(sql, new UserPositionRowMapper());
+        if (userPositionList.size() > 0) {
+            return userPositionList.get(0);
+        }
+        return userPosition;
+    }
+	
     public User getUserById(Long id) {
 
         User user = new User();

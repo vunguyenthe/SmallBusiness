@@ -30,6 +30,10 @@ public class PositionController {
     public @ResponseBody Position getPosition(@PathVariable("id") Long id) {
     	return positionService.getPositionById(id);
     }
+    @RequestMapping(value = "/positionUser/{userId}", method = RequestMethod.GET)
+    public @ResponseBody Position getPositionUserId(@PathVariable("userId") Long userId) {
+    	return positionService.getPositionUserId(userId);
+    }    
     @RequestMapping(value = "/position", method = RequestMethod.POST)
     public @ResponseBody boolean addPosition(@RequestBody Position position) {
         return positionService.addPosition(position);

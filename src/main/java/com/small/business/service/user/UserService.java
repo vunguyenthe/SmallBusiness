@@ -10,15 +10,20 @@ import com.small.business.exception.NotFoundException;
 import com.small.business.model.user.ForgotPasswordRequest;
 import com.small.business.model.user.ResetPasswordRequest;
 import com.small.business.model.user.User;
+import com.small.business.model.user.UserPosition;
 
 public interface UserService {
 
     public List<User> getAllUser();
 
+    public List<UserPosition> getAllUserPosition();
+    
     public Long validateUser(String user, String password);
 
     public User getUserById(Long id);
 
+    public UserPosition getUserPosition(Long userId);
+    
     public boolean addUser(User User);
 
     public boolean deleteUserById(Long id);

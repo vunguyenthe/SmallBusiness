@@ -9,6 +9,8 @@ public interface PositionDao {
     public List<Position> getAllPosition();
 
     public Position getPositionById(Long id);
+    
+    public Position getPositionUserId(Long userId);
 
     public boolean addPosition(Position Position);
 

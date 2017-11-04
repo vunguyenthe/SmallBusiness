@@ -21,6 +21,7 @@ import com.small.business.annotations.Monitor;
 import com.small.business.model.user.ForgotPasswordRequest;
 import com.small.business.model.user.ResetPasswordRequest;
 import com.small.business.model.user.User;
+import com.small.business.model.user.UserPosition;
 import com.small.business.service.user.UserService;
 
 @Controller
@@ -36,61 +37,64 @@ public class UserController {
     @Value("#{'${adminPage.user.accessable}'.split(',')}")
     private Set<String> adminPageUserAccessable;
 
-    @Monitor
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public @ResponseBody User getUser(@PathVariable long id) {
 
         return userService.getUserById(id);
     }
 
-    @Monitor
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public @ResponseBody List<User> getUserList() {
 
         return userService.getAllUser();
     }
 
-    @Monitor
+    @RequestMapping(value = "/userPosition", method = RequestMethod.GET)
+    public @ResponseBody List<UserPosition> getUserPositionList() {
+
+        return userService.getAllUserPosition();
+    }
+    
+    @RequestMapping(value = "/userPosition/{userId}", method = RequestMethod.GET)
+    public @ResponseBody UserPosition getUserPosition(@PathVariable("userId") Long userId) {
+
+        return userService.getUserPosition(userId);
+    }    
+    
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public @ResponseBody boolean addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
 
-    @Monitor
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     public @ResponseBody boolean updateUser(@RequestBody User user) {
         return userService.updateUser(user);
     }
 
-    @Monitor
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
     public @ResponseBody boolean removeUser(@PathVariable("id") Long id) {
 
         return userService.deleteUserById(id);
     }
 
-    @Monitor
     @RequestMapping(value = "/user/forgot-password", method = RequestMethod.POST)
     public @ResponseBody boolean forgotPasswordRequest(@RequestBody ForgotPasswordRequest forgotPasswordRequest) throws Exception {
 
         return userService.forgotPassword(forgotPasswordRequest);
     }
 
-    @Monitor
     @RequestMapping(value = "/user/reset-password", method = RequestMethod.POST)
     public @ResponseBody boolean resetPasswordRequest(@RequestBody ResetPasswordRequest resetPasswordRequest) throws Exception {
 
         return userService.resetPassword(resetPasswordRequest);
     }
 
-    @Monitor
     @RequestMapping(value = "/removeAllUser", method = RequestMethod.DELETE)
     public @ResponseBody boolean removeAllUser() {
 
         return userService.deleteAll();
     }
 
-    @Monitor
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
     public @ResponseBody String fileUpload(
             @RequestParam(value = "file", required = false) MultipartFile file,

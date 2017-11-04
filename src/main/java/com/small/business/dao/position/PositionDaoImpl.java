@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import com.small.business.jdbc.people.PositionRowMapper;
+import com.small.business.jdbc.position.PositionRowMapper;
 import com.small.business.jdbc.user.UserRowMapper;
 import com.small.business.model.user.Position;
 import com.small.business.model.user.User;
@@ -41,7 +41,17 @@ public class PositionDaoImpl implements PositionDao {
         }  
         return position;
     }
-
+    public Position getPositionUserId(Long userId) {
+        Position position = new Position();
+        List<Position> positionList = new ArrayList<Position>();
+        String sql = "select * from position where userId = " + userId;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        positionList = jdbcTemplate.query(sql, new PositionRowMapper());
+        if (positionList.size() > 0) {
+            return positionList.get(0);
+        }  
+        return position;
+    }
     public boolean addPosition(Position position) {
 
         boolean ret = true;
