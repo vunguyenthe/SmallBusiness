@@ -4,15 +4,7 @@ import com.small.business.model.base.BaseMessage;
 
 public class CategoryDetail extends BaseMessage {
 	private Long categoryId;
-	private String name;
 	private String categoryName;	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public Long getCategoryId() {
 		return categoryId;
@@ -32,7 +24,8 @@ public class CategoryDetail extends BaseMessage {
 
 	@Override
 	public String toString() {
-		return "Category [name=" + name + "]";
+		return "CategoryDetail [categoryId=" + categoryId + ", categoryName="
+				+ categoryName + "]";
 	}
-	
+
 }

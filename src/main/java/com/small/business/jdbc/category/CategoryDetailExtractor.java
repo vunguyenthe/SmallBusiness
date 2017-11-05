@@ -14,7 +14,7 @@ public class CategoryDetailExtractor implements ResultSetExtractor {
     	CategoryDetail categoryDetail = new CategoryDetail();
     	categoryDetail.setId(resultSet.getLong("id"));
     	categoryDetail.setCategoryId(resultSet.getLong("categoryId"));
-    	categoryDetail.setName(resultSet.getString("categoryName"));
+    	categoryDetail.setCategoryName(resultSet.getString("categoryName"));
         return categoryDetail;
     }
 }
