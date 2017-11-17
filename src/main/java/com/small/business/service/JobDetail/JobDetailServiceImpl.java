@@ -33,7 +33,7 @@ public class JobDetailServiceImpl implements JobDetailService {
     public JobDetailExt getJobDetailExtByCategoryDetailId(Long categoryDetailId) {
     	return jobDetailDao.getJobDetailExtByCategoryDetailId(categoryDetailId);
     }
-    public boolean addJobDetail(JobDetail JobDetail) {
+    public long addJobDetail(JobDetail JobDetail) {
 
         return jobDetailDao.addJobDetail(JobDetail);
     }

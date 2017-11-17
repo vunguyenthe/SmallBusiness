@@ -18,7 +18,7 @@ public interface UserDao {
     	
     public Optional<User> getUserByEmail(String email);
 
-    public boolean addUser(User People);
+    public long addUser(User People);
 
     public boolean deleteUserById(Long id);
 

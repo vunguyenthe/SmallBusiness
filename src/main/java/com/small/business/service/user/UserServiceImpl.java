@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
     	
     	return userDao.getUserPosition(userId);
     }
-    public boolean addUser(User user) {
+    public long addUser(User user) {
 
         return userDao.addUser(user);
     }

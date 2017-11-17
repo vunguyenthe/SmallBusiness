@@ -14,11 +14,15 @@ public class JobDetailExtExtractor implements ResultSetExtractor {
     	JobDetailExt JobDetailEx = new JobDetailExt();
     	JobDetailEx.setCategoryDetailId(resultSet.getLong("categoryDetailId"));
     	JobDetailEx.setDescription(resultSet.getString("description"));
-    	JobDetailEx.setPriceOder(resultSet.getDouble("priceOder"));
+    	JobDetailEx.setPriceOrder(resultSet.getDouble("priceOrder"));
     	JobDetailEx.setLocation(resultSet.getString("location"));
     	JobDetailEx.setDistance(resultSet.getLong("distance"));
     	JobDetailEx.setDatePost(resultSet.getString("datePost"));
     	JobDetailEx.setCategoryDetailName(resultSet.getString("categoryDetailName"));
+    	java.sql.Timestamp ts2 = java.sql.Timestamp.valueOf(resultSet.getString("datePost"));
+        long tsTime2 = ts2.getTime();    	
+    	JobDetailEx.setiDatePost(tsTime2);
+    	JobDetailEx.setCategoryName(resultSet.getString("categoryName"));    	
         return JobDetailEx;
     }
 }

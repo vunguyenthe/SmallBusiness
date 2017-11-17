@@ -14,7 +14,7 @@ public interface JobDetailDao {
     
     public JobDetail getJobDetailById(Long id);
     
-    public boolean addJobDetail(JobDetail jobDetailId);
+    public long addJobDetail(JobDetail jobDetailId);
 
     public boolean deleteJobDetailById(Long id);
 

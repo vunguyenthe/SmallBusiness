@@ -16,7 +16,7 @@ public class JobDetailExtractor implements ResultSetExtractor {
     	JobDetail JobDetail = new JobDetail();
     	JobDetail.setCategoryDetailId(resultSet.getLong("categoryDetailId"));
     	JobDetail.setDescription(resultSet.getString("description"));
-    	JobDetail.setPriceOder(resultSet.getDouble("priceOder"));
+    	JobDetail.setPriceOrder(resultSet.getDouble("priceOrder"));
     	JobDetail.setLocation(resultSet.getString("location"));
     	JobDetail.setDistance(resultSet.getLong("distance"));
     	JobDetail.setDatePost(resultSet.getString("datePost"));

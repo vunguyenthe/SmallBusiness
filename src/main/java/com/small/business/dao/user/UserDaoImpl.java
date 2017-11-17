@@ -1,5 +1,7 @@
 package com.small.business.dao.user;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -143,10 +145,26 @@ public class UserDaoImpl implements UserDao {
         }
         return ret;
     }
-
-    public boolean addUser(User user) {
+    public long getMaxUserId(String sql) {
+    	long maxId = 0L;
+    	try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pst = connection.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while( rs.next() )
+			{
+			    maxId = rs.getLong("maxid");
+			}
+		} catch (SQLException ex) {
+			LOGGER.error("getMaxId got error: " + ex.getMessage());
+		}
+    	System.out.println("maxUserId: " + maxId);
+    	return maxId;
+    }
+    public long addUser(User user) {
 
         boolean ret = true;
+        long maxId = 0L;
         try {
             String sql = "INSERT INTO user "
                     + "(name, email, phoneNumber, password1, password2,"
@@ -171,7 +189,12 @@ public class UserDaoImpl implements UserDao {
             ret = false;
             LOGGER.error("addUser got error: " + ex.getMessage());
         }
-        return ret;
+        if(ret) {
+        	String sql = "SELECT MAX(id) as maxid FROM user"; 
+        	maxId = getMaxUserId(sql);
+        	LOGGER.debug("maxId: " + maxId);
+        }        
+        return maxId;
     }
     public boolean updateUser(User user) {
 

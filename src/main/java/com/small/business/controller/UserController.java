@@ -62,7 +62,7 @@ public class UserController {
     }    
     
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public @ResponseBody boolean addUser(@RequestBody User user) {
+    public @ResponseBody long addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
 

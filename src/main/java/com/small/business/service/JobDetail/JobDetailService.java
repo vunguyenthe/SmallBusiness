@@ -13,7 +13,7 @@ public interface JobDetailService {
     
     public JobDetail getJobDetailById(Long id);
     
-    public boolean addJobDetail(JobDetail jobDetail);
+    public long addJobDetail(JobDetail jobDetail);
 
     public boolean deleteJobDetailById(Long id);
 

@@ -24,7 +24,7 @@ public interface UserService {
 
     public UserPosition getUserPosition(Long userId);
     
-    public boolean addUser(User User);
+    public long addUser(User User);
 
     public boolean deleteUserById(Long id);
 

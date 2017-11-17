@@ -5,7 +5,7 @@ import com.small.business.model.base.BaseMessage;
 public class JobDetail extends BaseMessage {
 	private long categoryDetailId;
 	private String description;
-	private double priceOder;
+	private double priceOrder;
 	private String location;
 	private float distance;
 	private String datePost;
@@ -20,12 +20,6 @@ public class JobDetail extends BaseMessage {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public double getPriceOder() {
-		return priceOder;
-	}
-	public void setPriceOder(double priceOder) {
-		this.priceOder = priceOder;
 	}
 	public String getLocation() {
 		return location;
@@ -45,10 +39,17 @@ public class JobDetail extends BaseMessage {
 	public void setDatePost(String datePost) {
 		this.datePost = datePost;
 	}
+	
+	public double getPriceOrder() {
+		return priceOrder;
+	}
+	public void setPriceOrder(double priceOrder) {
+		this.priceOrder = priceOrder;
+	}
 	@Override
 	public String toString() {
 		return "JobDetail [categoryDetailId=" + categoryDetailId
-				+ ", description=" + description + ", priceOder=" + priceOder
+				+ ", description=" + description + ", priceOder=" + priceOrder
 				+ ", location=" + location + ", distance=" + distance
 				+ ", datePost=" + datePost + "]";
 	}

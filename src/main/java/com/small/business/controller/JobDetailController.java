@@ -36,7 +36,7 @@ public class JobDetailController {
     }
     
     @RequestMapping(value = "/jobDetail", method = RequestMethod.POST)
-    public @ResponseBody boolean addJobDetail(@RequestBody JobDetail jobDetail) {
+    public @ResponseBody long addJobDetail(@RequestBody JobDetail jobDetail) {
         return jobDetailService.addJobDetail(jobDetail);
     }
 

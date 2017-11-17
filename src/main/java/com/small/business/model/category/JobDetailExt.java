@@ -5,12 +5,14 @@ import com.small.business.model.base.BaseMessage;
 public class JobDetailExt extends BaseMessage {
 	private long categoryDetailId;
 	private String description;
-	private double priceOder;
+	private double priceOrder;
 	private String location;
 	private float distance;
 	private String datePost;
+	private long iDatePost;
 	@SuppressWarnings("unused")
 	private String categoryDetailName;
+	private String categoryName;
 	public long getCategoryDetailId() {
 		return categoryDetailId;
 	}
@@ -23,11 +25,12 @@ public class JobDetailExt extends BaseMessage {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public double getPriceOder() {
-		return priceOder;
+
+	public double getPriceOrder() {
+		return priceOrder;
 	}
-	public void setPriceOder(double priceOder) {
-		this.priceOder = priceOder;
+	public void setPriceOrder(double priceOrder) {
+		this.priceOrder = priceOrder;
 	}
 	public String getLocation() {
 		return location;
@@ -54,10 +57,24 @@ public class JobDetailExt extends BaseMessage {
 	public void setCategoryDetailName(String categoryDetailName) {
 		this.categoryDetailName = categoryDetailName;
 	}
+	
+	public long getiDatePost() {
+		return iDatePost;
+	}
+	public void setiDatePost(long iDatePost) {
+		this.iDatePost = iDatePost;
+	}
+	
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 	@Override
 	public String toString() {
 		return "JobDetail [categoryDetailId=" + categoryDetailId
-				+ ", description=" + description + ", priceOder=" + priceOder
+				+ ", description=" + description + ", priceOder=" + priceOrder
 				+ ", location=" + location + ", distance=" + distance
 				+ ", datePost=" + datePost + "]";
 	}

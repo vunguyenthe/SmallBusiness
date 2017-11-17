@@ -1,4 +1,8 @@
 package com.small.business.dao.JobDetail;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
@@ -31,9 +35,11 @@ public class JobDetailDaoImpl implements JobDetailDao {
     public JobDetailExt getJobDetailExtByCategoryDetailId(Long categoryDetailId) {
     	JobDetailExt jobDetailExt = new JobDetailExt();
         List<JobDetailExt> jobDetailExtList = new ArrayList<JobDetailExt>();
-        String sql = "select j.*, c.categoryName as categoryDetailName from job_detail j, category_detail c "
-        		+ "where c.id= j.categoryDetailId"
-        		+ " and j.categoryDetailId = " + categoryDetailId;
+        String sql = "select j.*, cd.categoryName as categoryDetailName, c.name as categoryName "
+        		+ " from job_detail j, category_detail cd, category c "
+        		+ " where cd.id= j.categoryDetailId"
+        		+ " and c.id = cd.categoryId and j.categoryDetailId = " + categoryDetailId;
+        System.out.println("sql: " + sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jobDetailExtList = jdbcTemplate.query(sql, new JobDetailExtRowMapper());
         if (jobDetailExtList.size() > 0) {
@@ -52,12 +58,13 @@ public class JobDetailDaoImpl implements JobDetailDao {
         }  
         return JobDetail;
     }
-    public boolean addJobDetail(JobDetail jobDetail) {
+    public long addJobDetail(JobDetail jobDetail) {
 
+    	long maxId = 0L;
         boolean ret = true;
         try {
             String sql = "INSERT INTO job_detail "
-                    + "( categoryDetailId, description, priceOder, location, distance, datePost ) VALUES "
+                    + "( categoryDetailId, description, priceOrder, location, distance, datePost ) VALUES "
                     + "(?, ?, ?, ?, ?, ?)";
 
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -66,7 +73,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
                     new Object[] {
                     		jobDetail.getCategoryDetailId(),
                     		jobDetail.getDescription(),
-                    		jobDetail.getPriceOder(),
+                    		jobDetail.getPriceOrder(),
                     		jobDetail.getLocation(),
                     		jobDetail.getDistance(),
                     		jobDetail.getDatePost()
@@ -75,9 +82,29 @@ public class JobDetailDaoImpl implements JobDetailDao {
             ret = false;
             LOGGER.error("addJobDetail got error: " + ex.getMessage());
         }
-        return ret;
+        if(ret) {
+        	String sql = "SELECT MAX(id) as maxid FROM job_detail"; 
+        	maxId = getMaxId(sql);
+        	LOGGER.debug("maxId: " + maxId);
+        }
+        return maxId;
     }
-
+    public long getMaxId(String sql) {
+    	long maxId = 0L;
+    	try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pst = connection.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while( rs.next() )
+			{
+			    maxId = rs.getLong("maxid");
+			}
+		} catch (SQLException ex) {
+			LOGGER.error("getMaxId got error: " + ex.getMessage());
+		}
+    	System.out.println("maxPostId: " + maxId);
+    	return maxId;
+    }
     public boolean deleteJobDetailById(Long id) {
 
         boolean ret = true;
@@ -111,7 +138,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
     public boolean updateJobDetail(JobDetail jobDetail) {
 
         boolean ret = true;
-        String sql = "update job_detail set categoryDetailId = ?, description = ?, priceOder = ?, "
+        String sql = "update job_detail set categoryDetailId = ?, description = ?, priceOrder = ?, "
         		+ "location = ?, distance = ?, datePost = ? where id = ?";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         try {
@@ -120,7 +147,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
                     new Object[] {
                     		jobDetail.getCategoryDetailId(),
                     		jobDetail.getDescription(),
-                    		jobDetail.getPriceOder(),
+                    		jobDetail.getPriceOrder(),
                     		jobDetail.getLocation(),
                     		jobDetail.getDistance(),
                     		jobDetail.getDatePost(),
