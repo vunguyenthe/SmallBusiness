@@ -3,6 +3,7 @@ package com.small.business.dao.JobDetail;
 import java.util.List;
 
 import com.small.business.model.category.JobDetail;
+import com.small.business.model.category.JobDetailCategoryId;
 import com.small.business.model.category.JobDetailExt;
 
 
@@ -13,6 +14,8 @@ public interface JobDetailDao {
     public JobDetailExt getJobDetailExtByCategoryDetailId(Long categoryDetailId);
     
     public JobDetail getJobDetailById(Long id);
+    
+    public JobDetailCategoryId getJobDetailByIdExt(Long id);
     
     public long addJobDetail(JobDetail jobDetailId);
 

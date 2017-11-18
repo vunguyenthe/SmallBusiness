@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.small.business.jdbc.category.JobDetailCategoryIdRowMapper;
 import com.small.business.jdbc.category.JobDetailExtRowMapper;
 import com.small.business.jdbc.category.JobDetailRowMapper;
 import com.small.business.model.category.JobDetail;
+import com.small.business.model.category.JobDetailCategoryId;
 import com.small.business.model.category.JobDetailExt;
 @Service("JobDetailDao")
 public class JobDetailDaoImpl implements JobDetailDao {
@@ -50,17 +52,32 @@ public class JobDetailDaoImpl implements JobDetailDao {
     public JobDetail getJobDetailById(Long id) {
         JobDetail JobDetail = new JobDetail();
         List<JobDetail> JobDetailList = new ArrayList<JobDetail>();
-        String sql = "select * from job_detail where id= " + id;
+        String sql = "select * from job_detail j, category_detail c  where j.id= " + id  + 
+        		" and c.id = id";
+        System.out.println("sql: " + sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        JobDetailList = jdbcTemplate.query(sql, new JobDetailRowMapper());
+        JobDetailList = jdbcTemplate.query(sql, new JobDetailCategoryIdRowMapper());
         if (JobDetailList.size() > 0) {
             return JobDetailList.get(0);
         }  
         return JobDetail;
     }
+    public JobDetailCategoryId getJobDetailByIdExt(Long id) {
+    	JobDetailCategoryId jobDetailCategoryId = new JobDetailCategoryId();
+        List<JobDetailCategoryId> jobDetailCategoryIdList = new ArrayList<JobDetailCategoryId>();
+        String sql = "select * from job_detail j, category_detail c  where j.id= " + id  + 
+        		" and c.id = j.id";
+        System.out.println("sql: " + sql);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jobDetailCategoryIdList = jdbcTemplate.query(sql, new JobDetailCategoryIdRowMapper());
+        if (jobDetailCategoryIdList.size() > 0) {
+            return jobDetailCategoryIdList.get(0);
+        }  
+        return jobDetailCategoryId;
+    }    
     public long addJobDetail(JobDetail jobDetail) {
 
-    	long maxId = 0L;
+    	long categoryId = 0L;
         boolean ret = true;
         try {
             String sql = "INSERT INTO job_detail "
@@ -83,12 +100,29 @@ public class JobDetailDaoImpl implements JobDetailDao {
             LOGGER.error("addJobDetail got error: " + ex.getMessage());
         }
         if(ret) {
-        	String sql = "SELECT MAX(id) as maxid FROM job_detail"; 
-        	maxId = getMaxId(sql);
-        	LOGGER.debug("maxId: " + maxId);
+        	categoryId = getCategoryId(jobDetail.getCategoryDetailId());
+        	LOGGER.debug("categoryId: " + categoryId);
         }
-        return maxId;
+        return categoryId;
     }
+    private long getCategoryId(Long categoryDetailId) {
+    	String sql = "select categoryId from category_detail where id = " + categoryDetailId;
+    	System.out.println("sql: " + sql);
+    	long categoryId = 0L;
+    	try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pst = connection.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while( rs.next() )
+			{
+				categoryId = rs.getLong("categoryId");
+			}
+		} catch (SQLException ex) {
+			LOGGER.error("getCategoryId got error: " + ex.getMessage());
+		}
+    	System.out.println("categoryId: " + categoryId);
+    	return categoryId;
+    }    
     public long getMaxId(String sql) {
     	long maxId = 0L;
     	try {

@@ -1,22 +1,31 @@
 package com.small.business.model.user;
 
-public class Partner {
-	private Long idCard = 0L;
-	private Long passportNumber = 0L;
+import com.small.business.model.base.BaseMessage;
+
+public class Partner extends BaseMessage {
+	private Long userId = 0L;
+	private String idCard;;
+	private String passportNumber;
 	private String tempAddress;
 	private String permanentAddress;
 	private String bankAccountNumberId;
-	private Integer activated;
-	public Long getIdCard() {
+	
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	public String getIdCard() {
 		return idCard;
 	}
-	public void setIdCard(Long idCard) {
+	public void setIdCard(String idCard) {
 		this.idCard = idCard;
 	}
-	public Long getPassportNumber() {
+	public String getPassportNumber() {
 		return passportNumber;
 	}
-	public void setPassportNumber(Long passportNumber) {
+	public void setPassportNumber(String passportNumber) {
 		this.passportNumber = passportNumber;
 	}
 	public String getTempAddress() {
@@ -37,20 +46,12 @@ public class Partner {
 	public void setBankAccountNumberId(String bankAccountNumberId) {
 		this.bankAccountNumberId = bankAccountNumberId;
 	}
-	public Integer getActivated() {
-		return activated;
-	}
-	public void setActivated(Integer activated) {
-		this.activated = activated;
-	}
 	@Override
 	public String toString() {
 		return "Partner [idCard=" + idCard + ", passportNumber="
 				+ passportNumber + ", tempAddress=" + tempAddress
 				+ ", permanentAddress=" + permanentAddress
-				+ ", bankAccountNumberId=" + bankAccountNumberId
-				+ ", activated=" + activated + "]";
+				+ ", bankAccountNumberId=" + bankAccountNumberId + "]";
 	}
-	
 	
 }

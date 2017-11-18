@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.small.business.dao.JobDetail.JobDetailDao;
 import com.small.business.model.category.JobDetail;
+import com.small.business.model.category.JobDetailCategoryId;
 import com.small.business.model.category.JobDetailExt;
 import com.small.business.service.JobDetail.JobDetailService;
 
@@ -28,6 +29,10 @@ public class JobDetailServiceImpl implements JobDetailService {
 
     public JobDetail getJobDetailById(Long id) {
         return jobDetailDao.getJobDetailById(id);
+    }
+    
+    public JobDetailCategoryId getJobDetailByIdExt(Long id) {
+    	  return jobDetailDao.getJobDetailByIdExt(id);
     }
     
     public JobDetailExt getJobDetailExtByCategoryDetailId(Long categoryDetailId) {

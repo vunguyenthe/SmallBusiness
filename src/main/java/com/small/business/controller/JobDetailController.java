@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.small.business.model.category.JobDetail;
+import com.small.business.model.category.JobDetailCategoryId;
 import com.small.business.model.category.JobDetailExt;
 import com.small.business.service.JobDetail.JobDetailService;
 @Controller
@@ -25,8 +26,8 @@ public class JobDetailController {
     }
     
     @RequestMapping(value = "/jobDetail/{id}", method = RequestMethod.GET)
-    public @ResponseBody JobDetail getJobDetail(@PathVariable("id") Long id) {
-    	return jobDetailService.getJobDetailById(id);
+    public @ResponseBody JobDetailCategoryId getJobDetail(@PathVariable("id") Long id) {
+    	return jobDetailService.getJobDetailByIdExt(id);
     }
     
     @RequestMapping(value = "/jobDetailExt/{categoryDetailId}", method = RequestMethod.GET)
