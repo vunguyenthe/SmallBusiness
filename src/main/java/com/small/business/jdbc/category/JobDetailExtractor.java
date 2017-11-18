@@ -13,13 +13,18 @@ import com.small.business.model.user.Position;
 public class JobDetailExtractor implements ResultSetExtractor {
 
     public JobDetail extractData(ResultSet resultSet) throws SQLException, DataAccessException {
-    	JobDetail JobDetail = new JobDetail();
-    	JobDetail.setCategoryDetailId(resultSet.getLong("categoryDetailId"));
-    	JobDetail.setDescription(resultSet.getString("description"));
-    	JobDetail.setPriceOrder(resultSet.getDouble("priceOrder"));
-    	JobDetail.setLocation(resultSet.getString("location"));
-    	JobDetail.setDistance(resultSet.getLong("distance"));
-    	JobDetail.setDatePost(resultSet.getString("datePost"));
-        return JobDetail;
+    	JobDetail jobDetail = new JobDetail();
+    	jobDetail.setId(resultSet.getLong("id"));
+    	jobDetail.setEmployerId(resultSet.getLong("employerId"));
+    	jobDetail.setCategoryDetailId(resultSet.getLong("categoryDetailId"));
+    	jobDetail.setDescription(resultSet.getString("description"));
+    	jobDetail.setPriceOrder(resultSet.getDouble("priceOrder"));
+    	jobDetail.setLocation(resultSet.getString("location"));
+    	jobDetail.setDistance(resultSet.getLong("distance"));
+    	jobDetail.setDatePost(resultSet.getString("datePost"));
+    	java.sql.Timestamp ts2 = java.sql.Timestamp.valueOf(resultSet.getString("datePost"));
+        long tsTime2 = ts2.getTime();    	
+        jobDetail.setiDatePost(tsTime2);    	
+        return jobDetail;
     }
 }

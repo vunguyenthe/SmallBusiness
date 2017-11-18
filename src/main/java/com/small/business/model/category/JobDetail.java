@@ -3,14 +3,29 @@ package com.small.business.model.category;
 import com.small.business.model.base.BaseMessage;
 
 public class JobDetail extends BaseMessage {
-	private long categoryDetailId;
+	private long employerId = 0L;
+	private long categoryDetailId = 0L;
 	private String description;
-	private double priceOrder;
+	private double priceOrder = 0f;
 	private String location;
-	private float distance;
+	private float distance = 0f;
 	private String datePost;
+	private long iDatePost = 0L;
+	
+	public long getiDatePost() {
+		return iDatePost;
+	}
+	public void setiDatePost(long iDatePost) {
+		this.iDatePost = iDatePost;
+	}
 	public long getCategoryDetailId() {
 		return categoryDetailId;
+	}
+	public long getEmployerId() {
+		return employerId;
+	}
+	public void setEmployerId(long employerId) {
+		this.employerId = employerId;
 	}
 	public void setCategoryDetailId(long categoryDetailId) {
 		this.categoryDetailId = categoryDetailId;
@@ -48,10 +63,11 @@ public class JobDetail extends BaseMessage {
 	}
 	@Override
 	public String toString() {
-		return "JobDetail [categoryDetailId=" + categoryDetailId
-				+ ", description=" + description + ", priceOder=" + priceOrder
-				+ ", location=" + location + ", distance=" + distance
-				+ ", datePost=" + datePost + "]";
+		return "JobDetail [employerId=" + employerId + ", categoryDetailId="
+				+ categoryDetailId + ", description=" + description
+				+ ", priceOrder=" + priceOrder + ", location=" + location
+				+ ", distance=" + distance + ", datePost=" + datePost
+				+ ", iDatePost=" + iDatePost + "]";
 	}
 	
 }

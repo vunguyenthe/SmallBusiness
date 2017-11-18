@@ -53,7 +53,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
         JobDetail JobDetail = new JobDetail();
         List<JobDetail> JobDetailList = new ArrayList<JobDetail>();
         String sql = "select * from job_detail j, category_detail c  where j.id= " + id  + 
-        		" and c.id = id";
+        		" and c.id = j.categoryDetailId";
         System.out.println("sql: " + sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         JobDetailList = jdbcTemplate.query(sql, new JobDetailCategoryIdRowMapper());
@@ -66,7 +66,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
     	JobDetailCategoryId jobDetailCategoryId = new JobDetailCategoryId();
         List<JobDetailCategoryId> jobDetailCategoryIdList = new ArrayList<JobDetailCategoryId>();
         String sql = "select * from job_detail j, category_detail c  where j.id= " + id  + 
-        		" and c.id = j.id";
+        		" and c.id = j.categoryDetailId";
         System.out.println("sql: " + sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jobDetailCategoryIdList = jdbcTemplate.query(sql, new JobDetailCategoryIdRowMapper());
@@ -77,17 +77,18 @@ public class JobDetailDaoImpl implements JobDetailDao {
     }    
     public long addJobDetail(JobDetail jobDetail) {
 
-    	long categoryId = 0L;
+    	long maxId = 0L;
         boolean ret = true;
         try {
             String sql = "INSERT INTO job_detail "
-                    + "( categoryDetailId, description, priceOrder, location, distance, datePost ) VALUES "
-                    + "(?, ?, ?, ?, ?, ?)";
+                    + "( employerId, categoryDetailId, description, priceOrder, location, distance, datePost ) VALUES "
+                    + "(?, ?, ?, ?, ?, ?, ?)";
 
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             jdbcTemplate.update(
                     sql,
                     new Object[] {
+                    		jobDetail.getEmployerId(),
                     		jobDetail.getCategoryDetailId(),
                     		jobDetail.getDescription(),
                     		jobDetail.getPriceOrder(),
@@ -100,10 +101,11 @@ public class JobDetailDaoImpl implements JobDetailDao {
             LOGGER.error("addJobDetail got error: " + ex.getMessage());
         }
         if(ret) {
-        	categoryId = getCategoryId(jobDetail.getCategoryDetailId());
-        	LOGGER.debug("categoryId: " + categoryId);
-        }
-        return categoryId;
+        	String sql = "SELECT MAX(id) as maxid FROM job_detail"; 
+        	maxId = getMaxId(sql);
+        	LOGGER.debug("maxId: " + maxId);
+        }        
+        return maxId;
     }
     private long getCategoryId(Long categoryDetailId) {
     	String sql = "select categoryId from category_detail where id = " + categoryDetailId;
@@ -172,13 +174,14 @@ public class JobDetailDaoImpl implements JobDetailDao {
     public boolean updateJobDetail(JobDetail jobDetail) {
 
         boolean ret = true;
-        String sql = "update job_detail set categoryDetailId = ?, description = ?, priceOrder = ?, "
+        String sql = "update job_detail set employerId = ?, categoryDetailId = ?, description = ?, priceOrder = ?, "
         		+ "location = ?, distance = ?, datePost = ? where id = ?";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         try {
             jdbcTemplate.update(
                     sql,
                     new Object[] {
+                    		jobDetail.getEmployerId(),
                     		jobDetail.getCategoryDetailId(),
                     		jobDetail.getDescription(),
                     		jobDetail.getPriceOrder(),

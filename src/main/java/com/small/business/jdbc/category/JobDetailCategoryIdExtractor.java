@@ -16,6 +16,7 @@ public class JobDetailCategoryIdExtractor implements ResultSetExtractor {
     public JobDetailCategoryId extractData(ResultSet resultSet) throws SQLException, DataAccessException {
     	JobDetailCategoryId jobDetailCategoryId = new JobDetailCategoryId();
     	jobDetailCategoryId.setId(resultSet.getLong("id"));
+    	jobDetailCategoryId.setEmployerId(resultSet.getLong("employerId"));
     	jobDetailCategoryId.setCategoryDetailId(resultSet.getLong("categoryDetailId"));
     	jobDetailCategoryId.setCategoryId(resultSet.getLong("categoryId"));
     	jobDetailCategoryId.setDescription(resultSet.getString("description"));
