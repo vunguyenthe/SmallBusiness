@@ -26,18 +26,22 @@ public class JobDetailDaoImpl implements JobDetailDao {
     @Autowired
     DataSource dataSource;
 
-    public List<JobDetail> getAllJobDetail() {
+    public List<JobDetailExt> getAllJobDetail() {
 
-        List<JobDetail> JobDetailList = new ArrayList<JobDetail>();
-        String sql = "select * from job_detail";
+        List<JobDetailExt> jobDetailExtList = new ArrayList<JobDetailExt>();
+        String sql = "select j.*, cd.categoryName as categoryDetailName, c.name as categoryName, cd.categoryId "
+        		+ " from job_detail j, category_detail cd, category c "
+        		+ " where cd.id= j.categoryDetailId"
+        		+ " and c.id = cd.categoryId";
+        System.out.println("sql: " + sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        JobDetailList = jdbcTemplate.query(sql, new JobDetailRowMapper());
-        return JobDetailList;        
+        jobDetailExtList = jdbcTemplate.query(sql, new JobDetailExtRowMapper());  
+        return jobDetailExtList;
     }
-    public JobDetailExt getJobDetailExtByCategoryDetailId(Long categoryDetailId) {
+    public JobDetailExt getJobDetailByIdExt(Long categoryDetailId) {
     	JobDetailExt jobDetailExt = new JobDetailExt();
         List<JobDetailExt> jobDetailExtList = new ArrayList<JobDetailExt>();
-        String sql = "select j.*, cd.categoryName as categoryDetailName, c.name as categoryName "
+        String sql = "select j.*, cd.categoryName as categoryDetailName, c.name as categoryName, cd.categoryId "
         		+ " from job_detail j, category_detail cd, category c "
         		+ " where cd.id= j.categoryDetailId"
         		+ " and c.id = cd.categoryId and j.categoryDetailId = " + categoryDetailId;
@@ -49,32 +53,21 @@ public class JobDetailDaoImpl implements JobDetailDao {
         }  
         return jobDetailExt;
     }    
-    public JobDetail getJobDetailById(Long id) {
-        JobDetail JobDetail = new JobDetail();
-        List<JobDetail> JobDetailList = new ArrayList<JobDetail>();
-        String sql = "select * from job_detail j, category_detail c  where j.id= " + id  + 
-        		" and c.id = j.categoryDetailId";
+    public JobDetailExt getJobDetailById(Long id) {
+    	JobDetailExt jobDetailExt = new JobDetailExt();
+        List<JobDetailExt> jobDetailExtList = new ArrayList<JobDetailExt>();
+        String sql = "select j.*, cd.categoryName as categoryDetailName, c.name as categoryName, cd.categoryId "
+        		+ " from job_detail j, category_detail cd, category c "
+        		+ " where cd.id= j.categoryDetailId"
+        		+ " and c.id = cd.categoryId and j.id = " + id;
         System.out.println("sql: " + sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        JobDetailList = jdbcTemplate.query(sql, new JobDetailCategoryIdRowMapper());
-        if (JobDetailList.size() > 0) {
-            return JobDetailList.get(0);
+        jobDetailExtList = jdbcTemplate.query(sql, new JobDetailExtRowMapper());
+        if (jobDetailExtList.size() > 0) {
+            return jobDetailExtList.get(0);
         }  
-        return JobDetail;
+        return jobDetailExt;
     }
-    public JobDetailCategoryId getJobDetailByIdExt(Long id) {
-    	JobDetailCategoryId jobDetailCategoryId = new JobDetailCategoryId();
-        List<JobDetailCategoryId> jobDetailCategoryIdList = new ArrayList<JobDetailCategoryId>();
-        String sql = "select * from job_detail j, category_detail c  where j.id= " + id  + 
-        		" and c.id = j.categoryDetailId";
-        System.out.println("sql: " + sql);
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        jobDetailCategoryIdList = jdbcTemplate.query(sql, new JobDetailCategoryIdRowMapper());
-        if (jobDetailCategoryIdList.size() > 0) {
-            return jobDetailCategoryIdList.get(0);
-        }  
-        return jobDetailCategoryId;
-    }    
     public long addJobDetail(JobDetail jobDetail) {
 
     	long maxId = 0L;

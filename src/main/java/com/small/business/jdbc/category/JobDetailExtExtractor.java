@@ -13,8 +13,9 @@ public class JobDetailExtExtractor implements ResultSetExtractor {
     public JobDetailExt extractData(ResultSet resultSet) throws SQLException, DataAccessException {
     	JobDetailExt JobDetailEx = new JobDetailExt();
     	JobDetailEx.setId(resultSet.getLong("id"));
-    	JobDetailEx.setId(resultSet.getLong("employerId"));
+    	JobDetailEx.setEmployerId(resultSet.getLong("employerId"));
     	JobDetailEx.setCategoryDetailId(resultSet.getLong("categoryDetailId"));
+    	JobDetailEx.setCategoryId(resultSet.getLong("categoryId"));
     	JobDetailEx.setDescription(resultSet.getString("description"));
     	JobDetailEx.setPriceOrder(resultSet.getDouble("priceOrder"));
     	JobDetailEx.setLocation(resultSet.getString("location"));

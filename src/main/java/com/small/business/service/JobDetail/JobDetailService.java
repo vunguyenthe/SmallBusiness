@@ -8,13 +8,11 @@ import com.small.business.model.category.JobDetailExt;
 
 public interface JobDetailService {
 
-    public List<JobDetail> getAllJobDetail();
+    public List<JobDetailExt> getAllJobDetail();
 
-    public JobDetailExt getJobDetailExtByCategoryDetailId(Long categoryDetailId);
+    public JobDetailExt getJobDetailById(Long id);
     
-    public JobDetail getJobDetailById(Long id);
-    
-    public JobDetailCategoryId getJobDetailByIdExt(Long id);
+    public JobDetailExt getJobDetailByIdExt(Long categoryDetailId);
     
     public long addJobDetail(JobDetail jobDetail);
 

@@ -13,6 +13,16 @@ public class JobDetailExt extends BaseMessage {
 	private long iDatePost = 0L;
 	private String categoryDetailName;
 	private String categoryName;
+	private long categoryId = 0L;
+	
+	public long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public long getCategoryDetailId() {
 		return categoryDetailId;
 	}

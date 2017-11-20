@@ -158,12 +158,12 @@ public class PartnerDaoImpl implements PartnerDao {
             jdbcTemplate.update(
                     sql,
                     new Object[] {
-                    		partner.getUserId(),
                     		partner.getIdCard(),
                     		partner.getPassportNumber(),
                     		partner.getTempAddress(),
                     		partner.getPermanentAddress(),
-                    		partner.getBankAccountNumberId()
+                    		partner.getBankAccountNumberId(),
+                    		partner.getUserId()                    		
                     		});
         } catch (Exception ex) {
             ret = false;

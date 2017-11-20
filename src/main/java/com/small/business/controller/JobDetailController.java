@@ -20,21 +20,21 @@ public class JobDetailController {
     private JobDetailService jobDetailService;
 
     @RequestMapping(value = "/jobDetail", method = RequestMethod.GET)
-    public @ResponseBody List<JobDetail> getAllJobDetail() {
+    public @ResponseBody List<JobDetailExt> getAllJobDetail() {
 
         return jobDetailService.getAllJobDetail();
     }
     
     @RequestMapping(value = "/jobDetail/{id}", method = RequestMethod.GET)
-    public @ResponseBody JobDetailCategoryId getJobDetail(@PathVariable("id") Long id) {
-    	return jobDetailService.getJobDetailByIdExt(id);
+    public @ResponseBody JobDetailExt getJobDetail(@PathVariable("id") Long id) {
+    	return jobDetailService.getJobDetailById(id);
     }
     
-    @RequestMapping(value = "/jobDetailExt/{categoryDetailId}", method = RequestMethod.GET)
-    public @ResponseBody JobDetailExt getJobDetailExtByCategoryDetailId(@PathVariable("categoryDetailId") Long categoryDetailId) {
+    //@RequestMapping(value = "/jobDetailExt/{categoryDetailId}", method = RequestMethod.GET)
+    //public @ResponseBody JobDetailExt getJobDetailExtByCategoryDetailId(@PathVariable("categoryDetailId") Long categoryDetailId) {
 
-        return jobDetailService.getJobDetailExtByCategoryDetailId(categoryDetailId);
-    }
+    //    return jobDetailService.getJobDetailByIdExt(categoryDetailId);
+    //}
     
     @RequestMapping(value = "/jobDetail", method = RequestMethod.POST)
     public @ResponseBody long addJobDetail(@RequestBody JobDetail jobDetail) {

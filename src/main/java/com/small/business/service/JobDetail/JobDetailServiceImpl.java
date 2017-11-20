@@ -22,22 +22,19 @@ public class JobDetailServiceImpl implements JobDetailService {
     @Autowired
     JobDetailDao jobDetailDao;
 
-    public List<JobDetail> getAllJobDetail() {
-        List<JobDetail> JobDetailList = jobDetailDao.getAllJobDetail();
-        return JobDetailList;
+    public List<JobDetailExt> getAllJobDetail() {
+        List<JobDetailExt> JobDetailExList = jobDetailDao.getAllJobDetail();
+        return JobDetailExList;
     }
 
-    public JobDetail getJobDetailById(Long id) {
+    public JobDetailExt getJobDetailById(Long id) {
         return jobDetailDao.getJobDetailById(id);
     }
     
-    public JobDetailCategoryId getJobDetailByIdExt(Long id) {
-    	  return jobDetailDao.getJobDetailByIdExt(id);
+    public JobDetailExt getJobDetailByIdExt(Long categoryDetailId) {
+    	  return jobDetailDao.getJobDetailByIdExt(categoryDetailId);
     }
     
-    public JobDetailExt getJobDetailExtByCategoryDetailId(Long categoryDetailId) {
-    	return jobDetailDao.getJobDetailExtByCategoryDetailId(categoryDetailId);
-    }
     public long addJobDetail(JobDetail JobDetail) {
 
         return jobDetailDao.addJobDetail(JobDetail);
