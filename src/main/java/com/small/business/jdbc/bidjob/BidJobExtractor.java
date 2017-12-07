@@ -19,10 +19,10 @@ public class BidJobExtractor implements ResultSetExtractor {
     	bidJob.setJobDetailId(resultSet.getLong("jobDetailId"));
     	bidJob.setBidAsk(resultSet.getDouble("bidAsk"));
     	bidJob.setLocation(resultSet.getString("location"));
-    	bidJob.setIsExpired(resultSet.getInt("IsExpired"));
+    	bidJob.setIsExpired(resultSet.getInt("isExpired"));
     	bidJob.setIsSucceded(resultSet.getInt("isSucceded"));
     	bidJob.setBidTime(resultSet.getString("bidTime"));
-    	bidJob.setiBidTime(DateHelper.convertDateTimetoNumber(bidJob.getBidTime()));
+    	bidJob.setiBidTime(resultSet.getLong("iBidTime"));
     	bidJob.setJobName(resultSet.getString("categoryName"));
         return bidJob;
     }
