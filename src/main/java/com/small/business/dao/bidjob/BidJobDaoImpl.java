@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.small.business.jdbc.bidjob.BidJobRowMapper;
+import com.small.business.jdbc.bidjob.BidJobRowMapper2;
 import com.small.business.model.bidjob.BidJob;
 import com.small.business.model.category.Category;
 import com.small.business.util.DateHelper;
@@ -25,10 +26,33 @@ public class BidJobDaoImpl implements BidJobDao {
     @Autowired
     DataSource dataSource;
 
+    public List<BidJob> getAllBidJobActivated() {
+        List<BidJob> bidJobList = new ArrayList<BidJob>();
+        String sql = "select b.*, c.categoryName from bid_job b, job_detail j, category_detail c where b.jobDetailId = j.id and j.categoryDetailId = c.id and (j.isExpired = 0 and b.isExpired = 0)";
+        LOGGER.warn("getAllBidJobActivated sql: " + sql);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        bidJobList = jdbcTemplate.query(sql, new BidJobRowMapper());
+        return bidJobList;     	
+    }
+    public List<BidJob> getBidJobDetailId(Long jobDetailId) {
+        List<BidJob> bidJobList = new ArrayList<BidJob>();
+        String sql = "select b.*, c.categoryName, u.name, ur.level"
+        		+ " from bid_job b, job_detail j, category_detail c, "
+        		+ " user_rate_info ur, user u "
+        		+ " where b.jobDetailId = j.id and j.categoryDetailId = c.id "
+        		+ " and (j.isExpired = 0 and b.isExpired = 0)"
+        		+ " and b.userId = ur.userId and ur.userId = u.id"
+				+ " and b.jobDetailId = " + jobDetailId;        
+        LOGGER.warn("getBidJobDetailId sql: " + sql);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        bidJobList = jdbcTemplate.query(sql, new BidJobRowMapper2());
+        return bidJobList; 
+    }
     public List<BidJob> getAllBidJob() {
 
         List<BidJob> bidJobList = new ArrayList<BidJob>();
         String sql = "select b.*, c.categoryName from bid_job b, job_detail j, category_detail c where b.jobDetailId = j.id and j.categoryDetailId = c.id";
+        LOGGER.warn("getAllBidJob sql: " + sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         bidJobList = jdbcTemplate.query(sql, new BidJobRowMapper());
         return bidJobList;        
@@ -44,7 +68,7 @@ public class BidJobDaoImpl implements BidJobDao {
     public BidJob getBidJobById(Long id) {
         BidJob BidJob = new BidJob();
         List<BidJob> bidJobList = new ArrayList<BidJob>();
-        String sql = "select b.*, c.categoryName from bid_job b, job_detail j, category_detail c where b.jobDetailId = j.id and j.categoryDetailId = c.id and j.id= " + id;
+        String sql = "select b.*, c.categoryName from bid_job b, job_detail j, category_detail c where b.jobDetailId = j.id and j.categoryDetailId = c.id and b.id= " + id;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         bidJobList = jdbcTemplate.query(sql, new BidJobRowMapper());
         if (bidJobList.size() > 0) {
@@ -52,11 +76,28 @@ public class BidJobDaoImpl implements BidJobDao {
         }  
         return BidJob;
     }
+    public boolean setIsExpired(Long id, Integer isExpired) {
+        boolean ret = false;
+        String sql = "update bid_job set isExpired = " + isExpired + " where id = " +  id;
+        LOGGER.warn("setIsExpired sql: " + sql);
+        try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pst = connection.prepareStatement(sql);
+			if(pst.executeUpdate() > 0 )
+			{
+				ret = true;
+			}
+		} catch (SQLException ex) {
+			LOGGER.error("setIsExpired got error: " + ex.getMessage());
+			ret = false;
+		}
+        return ret;
+    }    
     public boolean updateBidJob(BidJob bidJob) {
 
         boolean ret = true;
         String sql = "update bid_job set userId = ?, jobDetailId = ?, bidAsk = ?, location = ?, "
-        		+ " IsExpired = ?, isSucceded = ?, bidTime = ? where id = ? ";
+        		+ " isExpired = ?, isSucceded = ?  where id = ? ";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         try {
             jdbcTemplate.update(
@@ -68,7 +109,6 @@ public class BidJobDaoImpl implements BidJobDao {
                     		bidJob.getLocation(),
                     		bidJob.getIsExpired(),
                     		bidJob.getIsSucceded(),
-                    		bidJob.getBidTime(),
                     		bidJob.getId()
                     		});
         } catch (Exception ex) {
@@ -99,8 +139,8 @@ public class BidJobDaoImpl implements BidJobDao {
     	long maxId = 0L;
         try {
             String sql = "INSERT INTO bid_job "
-                    + "( userId, jobDetailId, bidAsk, location, IsExpired, isSucceded, bidTime ) VALUES "
-                    + "(?, ?, ?, ?, ?, ?, ?)";
+                    + "( userId, jobDetailId, bidAsk, location, isExpired, isSucceded ) VALUES "
+                    + "(?, ?, ?, ?, ?, ?)";
 
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             jdbcTemplate.update(
@@ -111,8 +151,7 @@ public class BidJobDaoImpl implements BidJobDao {
                     		bidJob.getBidAsk(),
                     		bidJob.getLocation(),
                     		bidJob.getIsExpired(),
-                    		bidJob.getIsSucceded(),
-                    		bidJob.getBidTime(),
+                    		bidJob.getIsSucceded()
                     });
         } catch (Exception ex) {
             ret = false;

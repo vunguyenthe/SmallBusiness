@@ -54,4 +54,14 @@ public class JobDetailServiceImpl implements JobDetailService {
         return ret;
 	}
 
+	@Override
+	public boolean setIsExpired(Long id, Integer isExpired) {
+		return jobDetailDao.setIsExpired(id, isExpired);
+	}
+
+	@Override
+	public List<JobDetailExt> getAllJobDetailActivated() {
+		return jobDetailDao.getAllJobDetailActivated();
+	}
+
 }

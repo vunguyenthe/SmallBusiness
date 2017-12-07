@@ -9,6 +9,10 @@ public interface BidJobService {
 
     public List<BidJob> getAllBidJob();
     
+    public List<BidJob> getAllBidJobActivated();
+    
+    public List<BidJob> getBidJobDetailId(Long jobDetailId);
+    
     public List<BidJob> getAllBidJobByUserId(Long userId);
 
     public BidJob getBidJobById(Long id);
@@ -20,4 +24,6 @@ public interface BidJobService {
     public boolean deleteAll();
 
     public boolean updateBidJob(BidJob bidJob);
+    
+    public boolean setIsExpired(Long id, Integer isExpired);
 }

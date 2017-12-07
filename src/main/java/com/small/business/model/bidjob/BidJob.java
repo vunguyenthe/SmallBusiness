@@ -9,11 +9,31 @@ public class BidJob extends BaseMessage {
 	private String jobName;
 	private Double bidAsk = 0.00;
 	private String location;
-	private int IsExpired = 0;
+	private int isExpired = 0;
 	private int isSucceded = 0;
 	private String bidTime;
 	private Long iBidTime = 0L;
+	private String userName;
+	private Long iLevel = 0L;
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public Long getiLevel() {
+		return iLevel;
+	}
+	public void setiLevel(Long iLevel) {
+		this.iLevel = iLevel;
+	}
+	public int getIsExpired() {
+		return isExpired;
+	}
+	public void setIsExpired(int isExpired) {
+		this.isExpired = isExpired;
+	}
 	public String getJobName() {
 		return jobName;
 	}
@@ -44,12 +64,6 @@ public class BidJob extends BaseMessage {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public int getIsExpired() {
-		return IsExpired;
-	}
-	public void setIsExpired(int isExpired) {
-		IsExpired = isExpired;
-	}
 	public int getIsSucceded() {
 		return isSucceded;
 	}
@@ -70,10 +84,11 @@ public class BidJob extends BaseMessage {
 	}
 	@Override
 	public String toString() {
-		return "BidJob [userId=" + userId + ", bidAsk=" + bidAsk + ", location="
-				+ location + ", IsExpired=" + IsExpired + ", isSucceded="
+		return "BidJob [userId=" + userId + ", jobDetailId=" + jobDetailId
+				+ ", jobName=" + jobName + ", bidAsk=" + bidAsk + ", location="
+				+ location + ", isExpired=" + isExpired + ", isSucceded="
 				+ isSucceded + ", bidTime=" + bidTime + ", iBidTime=" + iBidTime
-				+ "]";
+				+ ", userName=" + userName + ", iLevel=" + iLevel + "]";
 	}
 	
 }

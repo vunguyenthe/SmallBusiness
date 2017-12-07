@@ -24,6 +24,10 @@ public class BidJobServiceImpl implements BidJobService {
         return categoryList;
     }
 
+    public List<BidJob> getBidJobDetailId(Long jobDetailId) {
+        List<BidJob> categoryList = bidJobDao.getBidJobDetailId(jobDetailId);
+        return categoryList;	
+    }
     public List<BidJob> getAllBidJobByUserId(Long userId) {
         List<BidJob> categoryList = bidJobDao.getAllBidJobByUserId(userId);
         return categoryList; 	
@@ -37,6 +41,9 @@ public class BidJobServiceImpl implements BidJobService {
         return bidJobDao.addBidJob(BidJob);
     }
 
+    public boolean setIsExpired(Long id, Integer isExpired) {
+    	 return bidJobDao.setIsExpired(id, isExpired);
+    }
     public boolean deleteAll() {
     	bidJobList.clear();
         return bidJobDao.deleteAll();
@@ -49,6 +56,11 @@ public class BidJobServiceImpl implements BidJobService {
 	public boolean deleteBidJobById(Long id) {
         boolean ret = bidJobDao.deleteBidJobById(id);
         return ret;
+	}
+
+	@Override
+	public List<BidJob> getAllBidJobActivated() {
+		return bidJobDao.getAllBidJobActivated();
 	}
 
 }

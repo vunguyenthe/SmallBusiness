@@ -20,31 +20,44 @@ public class BidJobController {
     @Autowired
     private BidJobService bidJobService;
 
-    @RequestMapping(value = "/bidjob", method = RequestMethod.GET)
+    @RequestMapping(value = "/bidJobActivated", method = RequestMethod.GET)
+    public @ResponseBody List<BidJob> getAllBidJobActivated() {
+        return bidJobService.getAllBidJobActivated();
+    }
+    
+    @RequestMapping(value = "/bidJobDetailId/{id}", method = RequestMethod.GET)
+    public @ResponseBody List<BidJob> getBidJobDetailId(@PathVariable("id") Long jobDetailId) {
+        return bidJobService.getBidJobDetailId(jobDetailId);
+    }
+    
+    @RequestMapping(value = "/bidJob", method = RequestMethod.GET)
     public @ResponseBody List<BidJob> getAllBidJob() {
 
         return bidJobService.getAllBidJob();
     }
-    
-    @RequestMapping(value = "/bidjob/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/bidJob/id={id}/isExpired={isExpired}", method = RequestMethod.POST)
+    public @ResponseBody Boolean setIsExpired(@PathVariable("id") Long id, @PathVariable("isExpired") Integer isExpired) {
+    	return bidJobService.setIsExpired(id, isExpired);
+    }
+    @RequestMapping(value = "/bidJob/{id}", method = RequestMethod.GET)
     public @ResponseBody BidJob getBidJob(@PathVariable("id") Long id) {
     	return bidJobService.getBidJobById(id);
     }
-    @RequestMapping(value = "/bidjobUserId/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/bidJobUserId/{userId}", method = RequestMethod.GET)
     public @ResponseBody List<BidJob> getAllBidJobByUserId(@PathVariable("userId") Long userId) {
     	return bidJobService.getAllBidJobByUserId(userId);
     }    
-    @RequestMapping(value = "/bidjob", method = RequestMethod.POST)
+    @RequestMapping(value = "/bidJob", method = RequestMethod.POST)
     public @ResponseBody Long addBidJob(@RequestBody BidJob BidJob) {
         return bidJobService.addBidJob(BidJob);
     }
 
-    @RequestMapping(value = "/bidjob", method = RequestMethod.PUT)
+    @RequestMapping(value = "/bidJob", method = RequestMethod.PUT)
     public @ResponseBody boolean updateBidJob(@RequestBody BidJob BidJob) {
         return bidJobService.updateBidJob(BidJob);
     }
 
-    @RequestMapping(value = "/bidjob/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/bidJob/{id}", method = RequestMethod.DELETE)
     public @ResponseBody boolean removeBidJob(@PathVariable("id") Long id) {
 
         return bidJobService.deleteBidJobById(id);

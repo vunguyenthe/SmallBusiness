@@ -11,7 +11,14 @@ public class JobDetail extends BaseMessage {
 	private float distance = 0f;
 	private String datePost;
 	private long iDatePost = 0L;
+	private int IsExpired = 0;
 	
+	public int getIsExpired() {
+		return IsExpired;
+	}
+	public void setIsExpired(int isExpired) {
+		IsExpired = isExpired;
+	}
 	public long getiDatePost() {
 		return iDatePost;
 	}

@@ -14,7 +14,16 @@ public class JobDetailExt extends BaseMessage {
 	private String categoryDetailName;
 	private String categoryName;
 	private long categoryId = 0L;
+	private int isExpired = 0;
 	
+	public int getIsExpired() {
+		return isExpired;
+	}
+
+	public void setIsExpired(int isExpired) {
+		this.isExpired = isExpired;
+	}
+
 	public long getCategoryId() {
 		return categoryId;
 	}

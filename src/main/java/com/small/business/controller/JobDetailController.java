@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.small.business.model.bidjob.BidJob;
 import com.small.business.model.category.JobDetail;
 import com.small.business.model.category.JobDetailCategoryId;
 import com.small.business.model.category.JobDetailExt;
@@ -23,6 +25,10 @@ public class JobDetailController {
     public @ResponseBody List<JobDetailExt> getAllJobDetail() {
 
         return jobDetailService.getAllJobDetail();
+    }
+    @RequestMapping(value = "/jobDetailActivated", method = RequestMethod.GET)
+    public @ResponseBody List<JobDetailExt> getAllBidJobActivated() {
+        return jobDetailService.getAllJobDetailActivated();
     }
     
     @RequestMapping(value = "/jobDetail/{id}", method = RequestMethod.GET)
@@ -41,6 +47,11 @@ public class JobDetailController {
         return jobDetailService.addJobDetail(jobDetail);
     }
 
+    @RequestMapping(value = "/jobDetail/id={id}/isExpired={isExpired}", method = RequestMethod.POST)
+    public @ResponseBody Boolean setIsExpired(@PathVariable("id") Long id, @PathVariable("isExpired") Integer isExpired) {
+    	return jobDetailService.setIsExpired(id, isExpired);
+    }
+    
     @RequestMapping(value = "/jobDetail", method = RequestMethod.PUT)
     public @ResponseBody boolean updateJobDetail(@RequestBody JobDetail jobDetail) {
         return jobDetailService.updateJobDetail(jobDetail);

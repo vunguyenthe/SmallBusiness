@@ -17,8 +17,12 @@ public interface JobDetailService {
     public long addJobDetail(JobDetail jobDetail);
 
     public boolean deleteJobDetailById(Long id);
+    
+    public boolean setIsExpired(Long id, Integer isExpired);
 
     public boolean deleteAll();
 
     public boolean updateJobDetail(JobDetail jobDetail);
+    
+    public List<JobDetailExt> getAllJobDetailActivated();
 }

@@ -5,7 +5,15 @@ import com.small.business.model.base.BaseMessage;
 public class BidJobFeedback extends BaseMessage {
 	private Long bidJobId = 0L;
 	private String comment;
-	private int level = 0;
+	private Long iLevel = 0L;
+	private Long userId = 0L;
+	
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 	public Long getBidJobId() {
 		return bidJobId;
 	}
@@ -18,15 +26,16 @@ public class BidJobFeedback extends BaseMessage {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public int getLevel() {
-		return level;
+	public Long getiLevel() {
+		return iLevel;
 	}
-	public void setLevel(int level) {
-		this.level = level;
+	public void setiLevel(Long iLevel) {
+		this.iLevel = iLevel;
 	}
 	@Override
 	public String toString() {
 		return "BidJobFeedback [bidJobId=" + bidJobId + ", comment=" + comment
-				+ ", level=" + level + "]";
+				+ ", iLevel=" + iLevel + ", userId=" + userId + "]";
 	}
+	
 }

@@ -20,4 +20,9 @@ public interface BidJobDao {
 
     public boolean updateBidJob(BidJob bidJob);
 
+    public boolean setIsExpired(Long id, Integer isExpired);
+    
+    public List<BidJob> getAllBidJobActivated();
+    
+    public List<BidJob> getBidJobDetailId(Long jobDetailId);
 }

@@ -18,9 +18,13 @@ public interface JobDetailDao {
     public long addJobDetail(JobDetail jobDetailId);
 
     public boolean deleteJobDetailById(Long id);
+    
+    public boolean setIsExpired(Long id, Integer isExpired);
 
     public boolean deleteAll();
 
     public boolean updateJobDetail(JobDetail jobDetailId);
+    
+    public List<JobDetailExt> getAllJobDetailActivated();
 
 }

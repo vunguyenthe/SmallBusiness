@@ -22,10 +22,9 @@ public class JobDetailExtExtractor implements ResultSetExtractor {
     	JobDetailEx.setDistance(resultSet.getLong("distance"));
     	JobDetailEx.setDatePost(resultSet.getString("datePost"));
     	JobDetailEx.setCategoryDetailName(resultSet.getString("categoryDetailName"));
-    	java.sql.Timestamp ts2 = java.sql.Timestamp.valueOf(resultSet.getString("datePost"));
-        long tsTime2 = ts2.getTime();    	
-    	JobDetailEx.setiDatePost(tsTime2);
-    	JobDetailEx.setCategoryName(resultSet.getString("categoryName"));    	
+    	JobDetailEx.setiDatePost(resultSet.getLong("iDatePost"));
+    	JobDetailEx.setCategoryName(resultSet.getString("categoryName"));  
+    	JobDetailEx.setIsExpired(resultSet.getInt("isExpired"));  
         return JobDetailEx;
     }
 }

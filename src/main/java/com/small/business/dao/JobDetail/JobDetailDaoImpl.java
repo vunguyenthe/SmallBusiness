@@ -26,6 +26,17 @@ public class JobDetailDaoImpl implements JobDetailDao {
     @Autowired
     DataSource dataSource;
 
+    public List<JobDetailExt> getAllJobDetailActivated() {
+        List<JobDetailExt> jobDetailExtList = new ArrayList<JobDetailExt>();
+        String sql = "select j.*, cd.categoryName as categoryDetailName, c.name as categoryName, cd.categoryId "
+        		+ " from job_detail j, category_detail cd, category c "
+        		+ " where cd.id= j.categoryDetailId"
+        		+ " and c.id = cd.categoryId and j.isExpired = 0";
+        LOGGER.warn("getAllJobDetailActivated sql: " + sql);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jobDetailExtList = jdbcTemplate.query(sql, new JobDetailExtRowMapper());  
+        return jobDetailExtList;    	
+    }
     public List<JobDetailExt> getAllJobDetail() {
 
         List<JobDetailExt> jobDetailExtList = new ArrayList<JobDetailExt>();
@@ -33,7 +44,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
         		+ " from job_detail j, category_detail cd, category c "
         		+ " where cd.id= j.categoryDetailId"
         		+ " and c.id = cd.categoryId";
-        System.out.println("sql: " + sql);
+        LOGGER.warn("getAllJobDetail sql: " + sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jobDetailExtList = jdbcTemplate.query(sql, new JobDetailExtRowMapper());  
         return jobDetailExtList;
@@ -45,7 +56,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
         		+ " from job_detail j, category_detail cd, category c "
         		+ " where cd.id= j.categoryDetailId"
         		+ " and c.id = cd.categoryId and j.categoryDetailId = " + categoryDetailId;
-        System.out.println("sql: " + sql);
+        LOGGER.warn("getJobDetailByIdExt sql: " + sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jobDetailExtList = jdbcTemplate.query(sql, new JobDetailExtRowMapper());
         if (jobDetailExtList.size() > 0) {
@@ -60,7 +71,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
         		+ " from job_detail j, category_detail cd, category c "
         		+ " where cd.id= j.categoryDetailId"
         		+ " and c.id = cd.categoryId and j.id = " + id;
-        System.out.println("sql: " + sql);
+        LOGGER.warn("getJobDetailById sql: " + sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jobDetailExtList = jdbcTemplate.query(sql, new JobDetailExtRowMapper());
         if (jobDetailExtList.size() > 0) {
@@ -74,7 +85,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
         boolean ret = true;
         try {
             String sql = "INSERT INTO job_detail "
-                    + "( employerId, categoryDetailId, description, priceOrder, location, distance, datePost ) VALUES "
+                    + "( employerId, categoryDetailId, description, priceOrder, location, distance, isExpired ) VALUES "
                     + "(?, ?, ?, ?, ?, ?, ?)";
 
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -87,7 +98,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
                     		jobDetail.getPriceOrder(),
                     		jobDetail.getLocation(),
                     		jobDetail.getDistance(),
-                    		jobDetail.getDatePost()
+                    		jobDetail.getIsExpired()
                     });
         } catch (Exception ex) {
             ret = false;
@@ -100,24 +111,6 @@ public class JobDetailDaoImpl implements JobDetailDao {
         }        
         return maxId;
     }
-    private long getCategoryId(Long categoryDetailId) {
-    	String sql = "select categoryId from category_detail where id = " + categoryDetailId;
-    	System.out.println("sql: " + sql);
-    	long categoryId = 0L;
-    	try {
-			Connection connection = dataSource.getConnection();
-			PreparedStatement pst = connection.prepareStatement(sql);
-			ResultSet rs = pst.executeQuery();
-			while( rs.next() )
-			{
-				categoryId = rs.getLong("categoryId");
-			}
-		} catch (SQLException ex) {
-			LOGGER.error("getCategoryId got error: " + ex.getMessage());
-		}
-    	System.out.println("categoryId: " + categoryId);
-    	return categoryId;
-    }    
     public long getMaxId(String sql) {
     	long maxId = 0L;
     	try {
@@ -164,11 +157,29 @@ public class JobDetailDaoImpl implements JobDetailDao {
 
     }
 
+    public boolean setIsExpired(Long id, Integer isExpired) {
+        boolean ret = false;
+        String sql = "update job_detail set isExpired = " + isExpired + " where id = " +  id;
+        LOGGER.warn("sql: " + sql);
+        try {
+			Connection connection = dataSource.getConnection();
+			PreparedStatement pst = connection.prepareStatement(sql);
+			if(pst.executeUpdate() > 0 )
+			{
+				ret = true;
+			}
+		} catch (SQLException ex) {
+			LOGGER.error("setIsExpired got error: " + ex.getMessage());
+			ret = false;
+		}
+        return ret;
+    }
+    
     public boolean updateJobDetail(JobDetail jobDetail) {
 
         boolean ret = true;
         String sql = "update job_detail set employerId = ?, categoryDetailId = ?, description = ?, priceOrder = ?, "
-        		+ "location = ?, distance = ?, datePost = ? where id = ?";
+        		+ "location = ?, distance = ?, isExpired = ? where id = ?";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         try {
             jdbcTemplate.update(
@@ -180,7 +191,7 @@ public class JobDetailDaoImpl implements JobDetailDao {
                     		jobDetail.getPriceOrder(),
                     		jobDetail.getLocation(),
                     		jobDetail.getDistance(),
-                    		jobDetail.getDatePost(),
+                    		jobDetail.getIsExpired(),
                     		jobDetail.getId() });
         } catch (Exception ex) {
             ret = false;
