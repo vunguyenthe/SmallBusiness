@@ -1,0 +1,33 @@
+package com.small.business.test;
+
+import com.small.business.model.PeopleAssignment;
+
+public class PeopleAssignmentTest extends BaseMessageTest {
+
+    private static final long id = 1;
+    private static final long journaType = 1;
+    private static final long peopleId = 1;
+    private static final long userId = 1;
+    private static final long yearStarted = 1999;
+    private static final long endedYear = 2016;
+    private static final long assignmentId = 1;
+    private static final String assignmentName = "assignmentName test";
+    private static final String companyName = "GCS";
+
+    public PeopleAssignmentTest() {
+        super(createMessage());
+    }
+
+    private static PeopleAssignment createMessage() {
+
+        PeopleAssignment peopleAssignment = new PeopleAssignment();
+        peopleAssignment.setId(id);
+        peopleAssignment.setAssignmentId(assignmentId);
+        peopleAssignment.setAssignmentName(assignmentName);
+        peopleAssignment.setPeopleId(peopleId);
+        peopleAssignment.setCompanyName(companyName);
+        peopleAssignment.setId(id);
+        peopleAssignment.setPeopleId(peopleId);
+        return peopleAssignment;
+    }
+}
