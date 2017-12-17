@@ -59,7 +59,7 @@
 		</triggeringPolicy>
 	</appender>
 
-    <logger name="com.small.business" level="INFO" additivity="false">
+    <logger name="com.small.business" level="CONSOLE" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="INFO-FILE"/>
         <appender-ref ref="ERROR-FILE"/>
