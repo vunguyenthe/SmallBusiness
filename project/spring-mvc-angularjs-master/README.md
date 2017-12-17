@@ -1,21 +1,23 @@
-# Spring-based WebSocket Chat Server
+spring-mvc-angularjs
+====================
 
-Demonstrates Spring WebSocket Server. Sample code based off of [Spring
-Guide](https://spring.io/guides/gs/messaging-stomp-websocket/) with a
-few changes.
+A simple application to demonstrate how to configure Angularjs with Spring MVC
 
-The package includes a Web client which can be used to exercise the
-functionality.
+The application demonstrates how to configure Spring MVC with AngularJS and Thymeleaf.
 
-Build the software as follows:
+It uses the AngularJS-Seed with some modifications to allow Spring MVC load the HTML. Also integrated Thymeleaf in case it is needed to pass some values from the spring mvc controller into the partials or index.html file.
 
-    mvn clean package
+I also included the bootstrap library for a better UI.
 
-Run it as follows, changing the port to 9090:
+Run Local (Embedded Tomcat):
+----------------
+  - execute: *mvn tomcat7:run*
+  - Then open the URL: http://localhost:8080/spring-mvc-angularjs
 
-    java -Dserver.port=9090 -jar target/chat-server-0.1.0.jar
+Run inside tomcat container
+-----------------------------
+Package it with maven
 
-Connect to the web client at: http:://<hostname>:9090/.
-
-For a demo Spring Java Client, see
-[https://github.com/jaysridhar/spring-websocket-client].
+  - execute: *mvn clean package*
+  - copy the result war file into your tomcat/webapp folder
+  - Then open the URL: http://localhost:8080/spring-mvc-angularjs
