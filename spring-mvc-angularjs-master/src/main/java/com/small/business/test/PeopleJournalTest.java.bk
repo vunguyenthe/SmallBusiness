@@ -1,0 +1,27 @@
+package com.small.business.test;
+
+import com.small.business.model.PeopleJournal;
+
+public class PeopleJournalTest extends BaseMessageTest {
+
+    private static final long id = 1;
+    private static final long journaType = 1;
+    private static final long peopleId = 1;
+    private static final long userId = 1;
+
+    public PeopleJournalTest() {
+        super(createMessage());
+    }
+
+    private static PeopleJournal createMessage() {
+
+        PeopleJournal peopleJournal = new PeopleJournal();
+        peopleJournal.setId(id);
+        peopleJournal.setJournaType(journaType);
+        peopleJournal.setNotes("hello");
+        peopleJournal.setPeopleId(peopleId);
+        peopleJournal.setUserId(userId);
+        peopleJournal.setUserName("admin");
+        return peopleJournal;
+    }
+}
