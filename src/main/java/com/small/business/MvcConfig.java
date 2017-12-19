@@ -28,27 +28,4 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
-    @Bean
-    public ServletContextTemplateResolver templateResolver() {
-        ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
-        resolver.setPrefix("/WEB-INF/html/");
-        resolver.setSuffix(".html");
-        resolver.setTemplateMode("HTML5");
-        resolver.setCacheable(false);
-        return resolver;
-    }
-
-    @Bean
-    public SpringTemplateEngine templateEngine() {
-        SpringTemplateEngine engine = new SpringTemplateEngine();
-        engine.setTemplateResolver(templateResolver());
-        return engine;
-    }
-
-    @Bean
-    public ThymeleafViewResolver thymeleafViewResolver() {
-        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-        resolver.setTemplateEngine(templateEngine());
-        return resolver;
-    }
 }
