@@ -1,0 +1,30 @@
+package com.small.business.test;
+
+import com.small.business.model.PeopleEducation;
+
+public class PeopleEducationTest extends BaseMessageTest {
+
+    private static final long id = 1;
+    private static final long journaType = 1;
+    private static final long peopleId = 1;
+    private static final long userId = 1;
+    private static final long yearStarted = 1999;
+    private static final long endedYear = 2016;
+
+    public PeopleEducationTest() {
+        super(createMessage());
+    }
+
+    private static PeopleEducation createMessage() {
+
+        PeopleEducation peopleEducation = new PeopleEducation();
+        peopleEducation.setId(id);
+        peopleEducation.setJournaType(journaType);
+        peopleEducation.setQualification("Qualification");
+        peopleEducation.setPeopleId(peopleId);
+        peopleEducation.setYearEnd(endedYear);
+        peopleEducation.setYearStarted(yearStarted);
+        peopleEducation.setJournalName("Tele call");
+        return peopleEducation;
+    }
+}
