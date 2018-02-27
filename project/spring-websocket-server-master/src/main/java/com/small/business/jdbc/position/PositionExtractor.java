@@ -14,7 +14,7 @@ public class PositionExtractor implements ResultSetExtractor {
     	Position position = new Position();
         position.setId(resultSet.getLong("id"));
         position.setUserId(resultSet.getLong("userId"));
-        position.setLongtitude(resultSet.getLong("longtitude"));
+        position.setLongitude(resultSet.getLong("longitude"));
         position.setLatitude(resultSet.getLong("latitude"));
         position.setDateChecked(resultSet.getString("dateChecked"));
         return position;

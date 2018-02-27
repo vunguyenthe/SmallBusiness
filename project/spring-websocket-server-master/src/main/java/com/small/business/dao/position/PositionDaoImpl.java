@@ -65,7 +65,7 @@ public class PositionDaoImpl implements PositionDao {
                     sql,
                     new Object[] {
                     		position.getUserId(),
-                    		position.getLongtitude(),
+                    		position.getLongitude(),
                     		position.getLatitude(),
                     		position.getDateChecked()
                     });
@@ -118,7 +118,7 @@ public class PositionDaoImpl implements PositionDao {
                     sql,
                     new Object[] {
                     		position.getUserId(),
-                    		position.getLongtitude(),
+                    		position.getLongitude(),
                     		position.getLatitude(),
                     		position.getDateChecked(),
                     		position.getId() });

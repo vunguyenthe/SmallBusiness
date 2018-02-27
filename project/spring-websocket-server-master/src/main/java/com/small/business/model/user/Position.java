@@ -4,7 +4,7 @@ import com.small.business.model.base.BaseMessage;
 
 public class Position extends BaseMessage{
 	Long userId = 0L;
-	Long longtitude = 0L;
+	Long longitude = 0L;
 	Long latitude = 0L;
 	String dateChecked;
 	public Long getUserId() {
@@ -13,11 +13,12 @@ public class Position extends BaseMessage{
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public Long getLongtitude() {
-		return longtitude;
+	
+	public Long getLongitude() {
+		return longitude;
 	}
-	public void setLongtitude(Long longtitude) {
-		this.longtitude = longtitude;
+	public void setLongitude(Long longitude) {
+		this.longitude = longitude;
 	}
 	public Long getLatitude() {
 		return latitude;
@@ -33,7 +34,7 @@ public class Position extends BaseMessage{
 	}
 	@Override
 	public String toString() {
-		return "Position [userId=" + userId + ", longtitude=" + longtitude
+		return "Position [userId=" + userId + ", longtitude=" + longitude
 				+ ", latitude=" + latitude + ", dateChecked=" + dateChecked
 				+ "]";
 	}
