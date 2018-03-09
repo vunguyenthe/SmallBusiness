@@ -22,3 +22,6 @@
 2018-02-27 08:05:13.075  INFO 10248 --- [main] com.small.business.Application           : Starting Application v0.1.0 on vunguyen-PC with PID 10248 (C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\target\chat-server-0.1.0.jar started by vunguyen in C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master)
 2018-02-27 08:05:13.117  INFO 10248 --- [main] com.small.business.Application           : No active profile set, falling back to default profiles: default
 2018-02-27 08:05:39.023  INFO 10248 --- [main] com.small.business.Application           : Started Application in 37.504 seconds (JVM running for 39.046)
+2018-03-10 04:07:47.814  INFO 8888 --- [main] com.small.business.Application           : Starting Application v0.1.0 on vunguyen-PC with PID 8888 (C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\target\chat-server-0.1.0.jar started by vunguyen in C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master)
+2018-03-10 04:07:47.920  INFO 8888 --- [main] com.small.business.Application           : No active profile set, falling back to default profiles: default
+2018-03-10 04:08:48.132  INFO 8888 --- [main] com.small.business.Application           : Started Application in 71.678 seconds (JVM running for 75.645)
