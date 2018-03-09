@@ -47,13 +47,13 @@ C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\dao\bidjob\BidJobDao.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\dao\bidjob\BidJobFeedbackDaoImpl.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\jdbc\option\JournalTypeRowMapper.java
+C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\AppInitializer.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\dao\constant\Const.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\service\position\PositionServiceImpl.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\model\option\ProgressStatus.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\model\category\JobDetail.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\argonaut\JsonOperations.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\service\bidjob\BidJobServiceImpl.java
-C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\model\people\Resume\Description.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\service\position\PositionService.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\service\user\UserServiceImpl.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\controller\CategoryController.java
@@ -71,7 +71,6 @@ C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\argonaut\JsonSerialiser.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\jdbc\bidjob\BidJobRowMapper2.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\service\util\Utility.java
-C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\model\people\Resume\Name.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\jdbc\category\CategoryDetailExtractor.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\jdbc\category\JobDetailCategoryIdExtractor.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\MvcConfig.java
@@ -82,7 +81,6 @@ C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\controller\PartnerController.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\service\people\PeopleService.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\model\audit\AuditItem.java
-C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\model\people\Resume\PeopleResume.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\jdbc\position\PositionRowMapper.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\service\category\CategoryServiceImpl.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\service\option\ProgressStatusServiceImpl.java
@@ -91,14 +89,13 @@ C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\model\user\Partner.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\WebSocketConfig.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\dao\people\PeopleDaoImpl.java
-C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\model\people\Resume\BasicInformation.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\dao\user\RoleDao.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\Message.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\model\user\ValidateUser.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\jdbc\user\PartnerRowMapper.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\jdbc\user\UserExtractor.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\Application.java
-C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\model\people\Resume\Experience.java
+C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\AppConfig.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\service\JobDetail\JobDetailServiceImpl.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\dao\category\CategoryDaoImpl.java
 C:\Users\vunguyen\Documents\SmallBusiness\project\spring-websocket-server-master\src\main\java\com\small\business\json\JSONParser.java
