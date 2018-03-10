@@ -26,7 +26,7 @@ class App extends Component {
 	return (
 	  <div>
 	    Message: <strong>{this.state.data}</strong>
-		<SockJsClient url='http://165.227.182.48:9090/chat' topics={['/topic/messages']}
+		<SockJsClient url='http://178.62.13.26:9090/chat' topics={['/topic/messages']}
 			onMessage={this.handleData.bind(this)}
 			ref={ (client) => { this.clientRef = client }} />
 	  </div>

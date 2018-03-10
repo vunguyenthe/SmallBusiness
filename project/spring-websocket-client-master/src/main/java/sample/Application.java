@@ -112,7 +112,8 @@ public class Application
 	    new WebSocketStompClient(sockJsClient);
 	stompClient.setMessageConverter(new MappingJackson2MessageConverter());
 
-	String url = "ws://localhost:8080/chat-server/chat";
+	//String url = "ws://localhost:8080/chat-server/chat";
+	String url = "ws://178.62.13.26:9090/chat";
 	String userId = "spring-" +
 	    ThreadLocalRandom.current().nextInt(1, 99);
 	StompSessionHandler sessionHandler = new MyStompSessionHandler(userId);
