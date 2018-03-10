@@ -1,0 +1,3 @@
+[submodule "project/mia-service"]
+	path = project/mia-service
+	url = https://github.com/vunguyenthe/mia-service.git
