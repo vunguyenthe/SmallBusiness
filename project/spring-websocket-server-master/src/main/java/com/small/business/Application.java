@@ -11,6 +11,10 @@ import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 import liquibase.integration.spring.SpringLiquibase;
 
 /*
@@ -49,5 +53,15 @@ public class Application extends SpringBootServletInitializer {
         factory.setMaxFileSize(env.getProperty("spring.http.multipart.maxFileSize"));
         factory.setMaxRequestSize(env.getProperty("spring.http.multipart.maxRequestSize"));
         return factory.createMultipartConfig();
+    }   
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+    	return new WebMvcConfigurerAdapter() {
+    		@Override
+    		public void addCorsMappings(CorsRegistry registry) {
+    			registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE").allowedOrigins("*")
+    				.allowedHeaders("*");
+    		}
+    	};
     }    
 }

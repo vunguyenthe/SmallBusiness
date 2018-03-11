@@ -1,8 +1,12 @@
-package com.small.business;
+package com.small.business.controller;
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
+
+import com.small.business.Message;
+import com.small.business.OutputMessage;
+
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 
 /*
