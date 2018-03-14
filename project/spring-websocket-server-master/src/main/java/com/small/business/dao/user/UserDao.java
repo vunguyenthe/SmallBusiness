@@ -27,6 +27,8 @@ public interface UserDao {
     public boolean updateUser(User People);
 
     public Long validateUser(String user, String password);
+    
+    public boolean checkPassKey(String passKey);
 
     public boolean checkForgotPasswordToken(String token);
 

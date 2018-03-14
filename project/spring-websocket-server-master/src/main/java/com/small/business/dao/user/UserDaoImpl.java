@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
     
 	public List<UserPosition> getAllUserPosition() {
         List userPositionList = new ArrayList<UserPosition>();
-        String sql = "select u.id as userId, u.name, u.email, u.phoneNumber, u.address, p.longtitude, p.latitude "
+        String sql = "select u.*, p.longitude, p.latitude "
         		+ "from user u, position p ";
         	sql += "where u.id = p.userId";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -53,7 +53,7 @@ public class UserDaoImpl implements UserDao {
 	public UserPosition getUserPosition(Long userId) {
 		UserPosition userPosition= new UserPosition();
         List<UserPosition> userPositionList = new ArrayList<UserPosition>();
-        String sql = "select u.id as userId, u.name, u.email, u.phoneNumber, u.address, p.longtitude, p.latitude "
+        String sql = "select u.*, p.longitude, p.latitude "
         		+ "from user u, position p ";
         	sql += "where u.id = p.userId and p.userId = " + userId;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -135,14 +135,14 @@ public class UserDaoImpl implements UserDao {
 
     public boolean deleteAll() {
 
-        boolean ret = true;
-        try {
+        boolean ret = false;
+        /*try {
             String sql = "delete from user";
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             jdbcTemplate.update(sql);
         } catch (Exception ex) {
             LOGGER.debug("deleteAll got error: " + ex.getMessage());
-        }
+        }*/
         return ret;
     }
     public long getMaxUserId(String sql) {
@@ -167,23 +167,37 @@ public class UserDaoImpl implements UserDao {
         long maxId = 0L;
         try {
             String sql = "INSERT INTO user "
-                    + "(name, email, phoneNumber, password1, password2,"
-                    + "address, userType, activated) VALUES "
-                    + "(?, ?, ?, ?, ?,"
+                    + "(name, phoneNumber, dayOfBirth, CMND,"
+                    + "passKey, issuedDay, issuedPlace, frontPhoto, "
+                    + "backPhoto, email, degree, certificateOfInformatics,"
+                    + "userType, isActivated, sex) VALUES "
+                    + "(?, ?, ?, ?,"
+                    + " ?, ?, ?, ?,"
+                    + " ?, ?, ?, ?, "
                     + " ?, ?, ?)";
 
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             jdbcTemplate.update(
                     sql,
                     new Object[] {
-                    		user.getName(),
-                    		user.getEmail(),
+                    		user.getName(), 
                     		user.getPhoneNumber(),
-                    		user.getPassword1(),
-                    		user.getPassword2(),
-                    		user.getAddress(),
+                    		user.getDayOfBirth(),
+                    		user.getCMND(),
+                    		//
+                    		user.getPassKey(),
+                    		user.getIssuedDay(),
+                    		user.getIssuedPlace(),
+                    		user.getFrontPhoto(),
+                    		//
+                    		user.getBackPhoto(),
+                    		user.getEmail(),
+                    		user.getDegree(),
+                    		user.getCertificateOfInformatics(),
+                    		//
                     		user.getUserType(),
-                    		user.getActivated()
+                    		user.getIsActiavated(),
+                    		user.getSex()
                     });
         } catch (Exception ex) {
             ret = false;
@@ -199,23 +213,35 @@ public class UserDaoImpl implements UserDao {
     public boolean updateUser(User user) {
 
         boolean ret = true;
-        String sql = "update user set name = ?, email = ?, phoneNumber = ?, "
-                + "password1 = ?, password2 = ?, address = ?, userType = ?, activated = ? "
-                + " where id = ?";
+        String sql = "update user set name = ?, phoneNumber = ?, dayOfBirth = ?, CMND = ?, "
+                + "issuedDay = ?, issuedPlace = ?, frontPhoto = ?, "
+                + "backPhoto = ?, email = ?, degree= ?, certificateOfInformatics= ?, "
+                + "userType = ?, isActivated = ?, sex = ? "
+                + "where id = ?";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         LOGGER.debug("userId = " + user.getId());
         try {
             jdbcTemplate.update(
                     sql,
                     new Object[] {
-                    		user.getName(),
-                    		user.getEmail(),
+                    		user.getName(), 
                     		user.getPhoneNumber(),
-                    		user.getPassword1(),
-                    		user.getPassword2(),
-                    		user.getAddress(),
+                    		user.getDayOfBirth(),
+                    		user.getCMND(),
+                    		//
+                    		user.getPassKey(),
+                    		//user.getIssuedDay(),
+                    		user.getIssuedPlace(),
+                    		user.getFrontPhoto(),
+                    		//
+                    		user.getBackPhoto(),
+                    		user.getEmail(),
+                    		user.getDegree(),
+                    		user.getCertificateOfInformatics(),
+                    		//
                     		user.getUserType(),
-                    		user.getActivated(),
+                    		user.getIsActiavated(),
+                    		user.getSex(),
                     		user.getId()
                     		});
         } catch (Exception ex) {
@@ -281,5 +307,28 @@ public class UserDaoImpl implements UserDao {
         }
         return sucess;
     }
+
+	@Override
+	public boolean checkPassKey(String passKey) {
+        boolean found = false;
+        try {
+            String sql = "SELECT 1 FROM user WHERE passKey = ? AND 	expiredPasskeyDay > CURRENT_TIMESTAMP + INTERVAL 1 MINUTE";
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+            List<Integer> result = jdbcTemplate.query(sql, new Object[] { passKey }, new RowMapper<Integer>() {
+
+                @Override
+                public Integer mapRow(ResultSet rs, int arg) throws SQLException {
+
+                    return rs.getInt(1);
+                }
+            });
+            if (result.size() == 1 && result.get(0).equals(1)) {
+                found = true;
+            }
+        } catch (Exception ex) {
+            LOGGER.error("Error when checkPassKey: ", ex);
+        }
+        return found;		
+	}
 
 }
