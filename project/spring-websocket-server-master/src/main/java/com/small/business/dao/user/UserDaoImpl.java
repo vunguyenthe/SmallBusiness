@@ -170,11 +170,11 @@ public class UserDaoImpl implements UserDao {
                     + "(name, phoneNumber, dayOfBirth, CMND,"
                     + "passKey, issuedDay, issuedPlace, frontPhoto, "
                     + "backPhoto, email, degree, certificateOfInformatics,"
-                    + "userType, isActivated, sex) VALUES "
+                    + "userType, isActivated, sex, miaApproval) VALUES "
                     + "(?, ?, ?, ?,"
                     + " ?, ?, ?, ?,"
                     + " ?, ?, ?, ?, "
-                    + " ?, ?, ?)";
+                    + " ?, ?, ?, ?)";
 
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
             jdbcTemplate.update(
@@ -197,7 +197,8 @@ public class UserDaoImpl implements UserDao {
                     		//
                     		user.getUserType(),
                     		user.getIsActiavated(),
-                    		user.getSex()
+                    		user.getSex(),
+                    		user.getMiaApproval()
                     });
         } catch (Exception ex) {
             ret = false;
@@ -216,7 +217,7 @@ public class UserDaoImpl implements UserDao {
         String sql = "update user set name = ?, phoneNumber = ?, dayOfBirth = ?, CMND = ?, "
                 + "issuedDay = ?, issuedPlace = ?, frontPhoto = ?, "
                 + "backPhoto = ?, email = ?, degree= ?, certificateOfInformatics= ?, "
-                + "userType = ?, isActivated = ?, sex = ? "
+                + "userType = ?, isActivated = ?, sex = ?, miaApproval = ? "
                 + "where id = ?";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         LOGGER.debug("userId = " + user.getId());
@@ -242,6 +243,7 @@ public class UserDaoImpl implements UserDao {
                     		user.getUserType(),
                     		user.getIsActiavated(),
                     		user.getSex(),
+                    		user.getMiaApproval(),
                     		user.getId()
                     		});
         } catch (Exception ex) {

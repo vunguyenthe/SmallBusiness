@@ -22,6 +22,7 @@ public class User extends BaseMessage {
     private Long iRegisteredDay = 0L;
     //private Integer isExpired;
     private String sex ="";
+    private Integer miaApproval = 0;
 	public String getName() {
 		return name;
 	}
@@ -126,6 +127,13 @@ public class User extends BaseMessage {
 	}
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+	
+	public Integer getMiaApproval() {
+		return miaApproval;
+	}
+	public void setMiaApproval(Integer miaApproval) {
+		this.miaApproval = miaApproval;
 	}
 	@Override
 	public String toString() {

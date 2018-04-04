@@ -21,6 +21,14 @@ public class UserPosition {
     private String sex = "";
 	Long longitude = 0L;
 	Long latitude = 0L;
+	private Integer miaApproval = 0;
+	
+	public Integer getMiaApproval() {
+		return miaApproval;
+	}
+	public void setMiaApproval(Integer miaApproval) {
+		this.miaApproval = miaApproval;
+	}
 	public Long getUserId() {
 		return userId;
 	}

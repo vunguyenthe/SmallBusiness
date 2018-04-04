@@ -34,6 +34,7 @@ public class UserExtractor implements ResultSetExtractor {
         user.setRegisteredDay(resultSet.getString("registeredDay"));
         user.setiRegisteredDay(resultSet.getLong("iRegisteredDay"));
         user.setSex(resultSet.getString("sex"));
+        user.setMiaApproval(resultSet.getInt("miaApproval"));
         return user;
     }
 }
