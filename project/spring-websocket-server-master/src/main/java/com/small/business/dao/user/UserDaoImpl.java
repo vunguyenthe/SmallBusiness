@@ -31,15 +31,17 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     DataSource dataSource;
 
-    public List<User> getAllUser() {
+    @SuppressWarnings("unchecked")
+	public List<User> getAllUser() {
 
-        List userList = new ArrayList();
+        List<User> userList = new ArrayList<User>();
         String sql = "select * from user";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         userList = jdbcTemplate.query(sql, new UserRowMapper());
         return userList;
     }
     
+	@SuppressWarnings("unchecked")
 	public List<UserPosition> getAllUserPosition() {
         List userPositionList = new ArrayList<UserPosition>();
         String sql = "select u.*, p.longitude, p.latitude "
@@ -50,6 +52,7 @@ public class UserDaoImpl implements UserDao {
         return userPositionList;
     }
     
+	@SuppressWarnings("unchecked")
 	public UserPosition getUserPosition(Long userId) {
 		UserPosition userPosition= new UserPosition();
         List<UserPosition> userPositionList = new ArrayList<UserPosition>();
@@ -82,7 +85,8 @@ public class UserDaoImpl implements UserDao {
 
         String sql = "SELECT * FROM user WHERE email = ?";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        List<User> userList = jdbcTemplate.query(sql, new Object[] { email }, new UserRowMapper());
+        @SuppressWarnings("unchecked")
+		List<User> userList = jdbcTemplate.query(sql, new Object[] { email }, new UserRowMapper());
         if (userList.size() == 1) {
             return Optional.of(userList.get(0));
         } else if (userList.size() > 1) {
@@ -97,7 +101,8 @@ public class UserDaoImpl implements UserDao {
         return ret;
     }
 
-    public Long validateUser(String user, String password) {
+    @SuppressWarnings("unchecked")
+	public Long validateUser(String user, String password) {
 
         Long userId = 0L;
 
