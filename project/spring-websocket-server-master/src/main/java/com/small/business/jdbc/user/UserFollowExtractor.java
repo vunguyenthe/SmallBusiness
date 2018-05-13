@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.small.business.model.user.UserFollow;
 
-public class UserFollowExtractor implements ResultSetExtractor {
+public class UserFollowExtractor implements ResultSetExtractor<Object> {
 
     public UserFollow extractData(ResultSet resultSet) throws SQLException, DataAccessException {
     	UserFollow userFollow = new UserFollow();
